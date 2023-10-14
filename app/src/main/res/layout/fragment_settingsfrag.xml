@@ -63,7 +63,7 @@
 
     <Button
         android:id="@+id/btnmiles"
-        android:layout_width="0dp"
+        android:layout_width="wrap_content"
         android:layout_height="0dp"
         android:layout_marginEnd="22dp"
         android:layout_marginBottom="55dp"
