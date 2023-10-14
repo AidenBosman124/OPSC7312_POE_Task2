@@ -10,6 +10,7 @@
     <string name="menu_home">Home</string>
     <string name="menu_gallery">Gallery</string>
     <string name="menu_slideshow">Slideshow</string>
+    <!-- Strings related to login -->
     <string name="prompt_email">Email</string>
     <string name="prompt_password">Password</string>
     <string name="action_sign_in">Sign in or register</string>
@@ -18,22 +19,4 @@
     <string name="invalid_username">Not a valid username</string>
     <string name="invalid_password">Password must be >5 characters</string>
     <string name="login_failed">"Login failed"</string>
-    <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="byteArrayFormatter">%02x</string>
-    <string name="invalidSignInTitle">Unable to Sign In</string>
-    <string name="invalidSignInMessage">User does not exist</string>
-    <string name="invalidSignUpTitle">Unable to Sign Up</string>
-    <string name="invalidSignUpMessage">User already exists</string>
-    <string name="passwordShort">The password must contain at least 8 characters</string>
-    <string name="passwordNeedsNumber">There must be at least one digit in the password</string>
-    <string name="passwordNeedsLowerCase">At least one lower case letter is required</string>
-    <string name="passwordNeedsUpperCase">Please add at least one upper case letter</string>
-    <string name="passwordNeedsSpecialCharacter">Password needs to include one of the following special characters: -?!@#£$%+=&amp;</string>
-    <string name="passwordSpecialCharacters">-?!@#£$%+=&amp;</string>
-    <string name="addedUserTitle">Account Created</string>
-    <string name="addedUserMessage">Account created! Please Log In ☺!</string>
-    <string name="inputErrorTitle">Input Error</string>
-    <string name="incompleteFields">Please fill in all fields</string>
-    <string name="invalidPassword">Invalid Password</string>
-    <string name="Error">Error</string>
 </resources>

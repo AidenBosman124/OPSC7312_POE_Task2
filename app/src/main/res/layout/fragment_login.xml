@@ -2,10 +2,15 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".LoginFragment">
+    android:paddingLeft="@dimen/fragment_horizontal_margin"
+    android:paddingTop="@dimen/fragment_vertical_margin"
+    android:paddingRight="@dimen/fragment_horizontal_margin"
+    android:paddingBottom="@dimen/fragment_vertical_margin"
+    tools:context=".ui.login.LoginFragment">
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
@@ -17,47 +22,46 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
+            android:background="@drawable/custom_edittext"
             android:gravity="center_horizontal"
-            android:padding="24dp"
-            android:background="@drawable/custom_edittext">
+            android:orientation="vertical"
+            android:padding="24dp">
 
 
             <TextView
+                android:id="@+id/login"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Login"
-                android:id="@+id/login"
-                android:textSize="36sp"
                 android:textAlignment="center"
-                android:textStyle="bold"
-                android:textColor="@color/light_blue"/>
+                android:textColor="@color/light_blue"
+                android:textSize="36sp"
+                android:textStyle="bold" />
 
             <EditText
+                android:id="@+id/username"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
-                android:id="@+id/etUsername"
-                android:background="@drawable/custom_edittext"
                 android:layout_marginTop="40dp"
-                android:padding="8dp"
-                android:hint="Username"
+                android:background="@drawable/custom_edittext"
                 android:drawableLeft="@drawable/baseline_person_24"
-                android:textColor="@color/black"
-                android:drawablePadding="8dp"/>
+                android:drawablePadding="8dp"
+                android:hint="Username"
+                android:padding="8dp"
+                android:textColor="@color/black" />
 
             <EditText
+                android:id="@+id/password"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
-                android:id="@+id/etPassword"
-                android:background="@drawable/custom_edittext"
                 android:layout_marginTop="40dp"
+                android:background="@drawable/custom_edittext"
+                android:drawableLeft="@drawable/baseline_lock_24"
+                android:drawablePadding="8dp"
+                android:hint="Password"
                 android:inputType="textPassword"
                 android:padding="8dp"
-                android:hint="Password"
-                android:drawableLeft="@drawable/baseline_lock_24"
-                android:textColor="@color/black"
-                android:drawablePadding="8dp"
-                />
+                android:textColor="@color/black" />
 
             <Button
                 android:id="@+id/btn_login"
@@ -70,15 +74,28 @@
                 app:cornerRadius="20dp" />
 
             <TextView
+                android:id="@+id/toSignup"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:id="@+id/toSignup"
-                android:textColor="@color/light_blue"
-                android:text="If you do not have an account,  Sign Up"
                 android:layout_gravity="center"
+                android:text="If you do not have an account,  Sign Up"
                 android:textAlignment="center"
-                />
+                android:textColor="@color/light_blue" />
+
 
         </LinearLayout>
+
+
     </androidx.cardview.widget.CardView>
+
+    <ProgressBar
+        android:id="@+id/loading"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="64dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginBottom="64dp"
+        android:visibility="gone" />
 </LinearLayout>
