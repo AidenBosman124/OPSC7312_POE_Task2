@@ -1,5 +1,6 @@
 package com.example.opsc_poe
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -18,6 +19,7 @@ class SignUpFragment : Fragment(R.layout.fragment_sign_up){
     // onDestroyView.
     private val binding get() = _binding!!
 
+    @SuppressLint("SuspiciousIndentation")
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -37,7 +39,6 @@ class SignUpFragment : Fragment(R.layout.fragment_sign_up){
                 {
 
                     val trySignUp  =  UserDataClass()
-
                     var (validateUserPasswordBool, validateUserPasswordFeedback) = trySignUp.ValidateUserPassword(binding.etNewPassword.text.toString(), requireContext())
 
                         if (validateUserPasswordBool)
