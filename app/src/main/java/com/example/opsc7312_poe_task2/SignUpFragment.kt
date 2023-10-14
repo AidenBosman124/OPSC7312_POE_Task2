@@ -37,7 +37,6 @@ class SignUpFragment : Fragment(R.layout.fragment_sign_up){
                 {
 
                     val trySignUp  =  UserDataClass()
-
                     var (validateUserPasswordBool, validateUserPasswordFeedback) = trySignUp.ValidateUserPassword(binding.etNewPassword.text.toString(), requireContext())
 
                         if (validateUserPasswordBool)
