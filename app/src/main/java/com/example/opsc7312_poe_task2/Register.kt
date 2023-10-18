@@ -1,14 +1,13 @@
 package com.example.opsc7312_poe_task2
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
-import com.example.opsc7312_poe_task2.databinding.ActivityMainBinding
+import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 
-class Register : AppCompatActivity()
-{
+class Register : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_register)
@@ -16,16 +15,14 @@ class Register : AppCompatActivity()
         val Registerbtn = findViewById<Button>(R.id.btn_signup)
         val Backbtn = findViewById<Button>(R.id.btnBack)
 
-        Registerbtn.setOnClickListener()
-        {
+        Registerbtn.setOnClickListener() {
             register()
         }
-        Backbtn.setOnClickListener()
-        {
+        Backbtn.setOnClickListener() {
             startActivity(Intent(this@Register, Login::class.java))
         }
-
     }
+
     private fun register() {
         val username = findViewById<EditText>(R.id.etNewUsername)
         val password = findViewById<EditText>(R.id.etNewPassword)
@@ -44,13 +41,14 @@ class Register : AppCompatActivity()
                     getString(R.string.passwordSpecialCharacters)
                 )
 
-                val (validateUserPasswordBool, passwordErrors) = trySignUp.ValidateUserPassword(password.text.toString(), passwordResources)
+                val (validateUserPasswordBool, ) = trySignUp.ValidateUserPassword(password.text.toString(), passwordResources)
 
                 if (validateUserPasswordBool) {
                     trySignUp.RegisterUser(username.text.toString(), password.text.toString())
                     startActivity(Intent(this@Register, MainPage::class.java))
                 } else {
-                    // Handle password validation errors (passwordErrors)
+                    // Display an error message with password requirements
+                    displayPasswordError()
                 }
             } else {
                 // Handle empty fields
@@ -58,5 +56,14 @@ class Register : AppCompatActivity()
         } catch (e: Exception) {
             // Handle exceptions
         }
+    }
+
+    private fun displayPasswordError() {
+        Toast.makeText(this, "Sign up failed. Password requirements:\n" +  getString(R.string.passwordShort)
+                + "\n" + getString(R.string.passwordNeedsNumber) + "\n" +
+            getString(R.string.passwordNeedsLowerCase) + "\n " +
+            getString(R.string.passwordNeedsUpperCase) + "\n" +
+            getString(R.string.passwordNeedsSpecialCharacter) + "\n"+
+            getString(R.string.passwordSpecialCharacters), Toast.LENGTH_LONG).show()
     }
 }
