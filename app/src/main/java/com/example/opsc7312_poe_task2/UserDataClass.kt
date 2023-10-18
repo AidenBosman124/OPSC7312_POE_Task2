@@ -13,7 +13,7 @@ class UserDataClass
 {
 
 
-    fun ValidateUser(userName: String, userPassword: String, context: Context): Boolean
+    fun ValidateUser(userName: String, userPassword: String): Boolean
     {
         //val PasswordManager = PasswordClass(context)
 
@@ -40,84 +40,53 @@ class UserDataClass
                 }
             }
         }
-        return if (userID == 0)
-        {
-            //user doesn't exist code goes here
-            GlobalsClass.userAlert(context.getString(R.string.invalidSignInTitle), context.getString(R.string.invalidSignInMessage), context)
-
-            //return the user exists boolean as false
-            false
-        } else{
-
-            //return the user exists boolean as true
-            true
-        }
+        return userID != 0
     }
 
     @SuppressLint("SuspiciousIndentation")
-    fun ValidateUserPassword(attemptedPassword : String, context : Context): Pair<Boolean, String>
-    {
+    fun ValidateUserPassword(attemptedPassword: String, passwordResources: PasswordResources): Pair<Boolean, String> {
+        val validationErrors = ArrayList<String>()
 
-        var validationErrors = ArrayList<String>()
-
-        if (attemptedPassword.length < 8)
-        {
-            validationErrors.add(context.getString(R.string.passwordShort))
+        if (attemptedPassword.length < 8) {
+            validationErrors.add(passwordResources.passwordShort)
         }
 
-        if (attemptedPassword.count(Char::isDigit) == 0)
-        {
-            validationErrors.add(context.getString(R.string.passwordNeedsNumber))
+        if (attemptedPassword.count(Char::isDigit) == 0) {
+            validationErrors.add(passwordResources.passwordNeedsNumber)
         }
 
-        if (attemptedPassword.any(Char::isLowerCase))
-        {
-
-        }
-        else
-        {
-            validationErrors.add(context.getString(R.string.passwordNeedsLowerCase))
+        if (!attemptedPassword.any(Char::isLowerCase)) {
+            validationErrors.add(passwordResources.passwordNeedsLowerCase)
         }
 
-        if (attemptedPassword.any(Char::isUpperCase))
-        {
-
-        }
-        else
-        {
-            validationErrors.add(context.getString(R.string.passwordNeedsUpperCase))
+        if (!attemptedPassword.any(Char::isUpperCase)) {
+            validationErrors.add(passwordResources.passwordNeedsUpperCase)
         }
 
-
-        if (attemptedPassword.any { it in context.getString(R.string.passwordSpecialCharacters) })
-        {
-
-        }
-        else
-        {
-            validationErrors.add(context.getString(R.string.passwordNeedsSpecialCharacter))
+        if (!attemptedPassword.any { it in passwordResources.passwordSpecialCharacters }) {
+            validationErrors.add(passwordResources.passwordNeedsSpecialCharacter)
         }
 
-
-        if (validationErrors.isEmpty())
-        {
-            return Pair(true, "")//true
-        }
-        else
-        {
-            var passwordErrors = ""
-            for (i in validationErrors) {
-                passwordErrors+= "$i\n"
-            }
-
-            //GlobalClass.InformUser("Invalid Password", passwordErrors, context)
-            return Pair(false, passwordErrors)//false
+        if (validationErrors.isEmpty()) {
+            return Pair(true, "")
+        } else {
+            val passwordErrors = validationErrors.joinToString("\n")
+            return Pair(false, passwordErrors)
         }
     }
 
-    fun RegisterUser(userUsername : String, userPassword: String, context: Context)
+    data class PasswordResources(
+        val passwordShort: String,
+        val passwordNeedsNumber: String,
+        val passwordNeedsLowerCase: String,
+        val passwordNeedsUpperCase: String,
+        val passwordNeedsSpecialCharacter: String,
+        val passwordSpecialCharacters: String
+    )
+
+
+    fun RegisterUser(userUsername : String, userPassword: String)
     {
-        val PasswordManager = (context)
         var userExists = false
 
 
@@ -129,10 +98,6 @@ class UserDataClass
             {
                 //If the user already exists set the user exists variable to true
                 userExists = true
-
-                //Inform user that the entered information is already registered to another user
-                GlobalsClass.userAlert(context.getString(R.string.invalidSignUpTitle), context.getString(R.string.invalidSignUpMessage), context)
-
                 //exit loop
                 break
             }
@@ -158,10 +123,6 @@ class UserDataClass
             var newUser = UserDataClass(newUserUserIDIndex, userUsername, userPassword)
 
             GlobalsClass.userList.add(newUser)
-
-            //inform the user that their account was successfully created
-            GlobalsClass.userAlert(context.getString(R.string.addedUserTitle), context.getString(R.string.addedUserMessage), context)
-
         }
 
 

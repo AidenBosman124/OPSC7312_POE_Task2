@@ -36,4 +36,6 @@
     <string name="incompleteFields">Please fill in all fields</string>
     <string name="invalidPassword">Invalid Password</string>
     <string name="Error">Error</string>
+    <string name="signUpScreenValue">Sign_Up</string>
+    <string name="LoadSignUp">LoadSignUp</string>
 </resources>

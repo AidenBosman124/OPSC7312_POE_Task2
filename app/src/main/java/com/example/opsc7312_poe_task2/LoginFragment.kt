@@ -1,10 +1,12 @@
 package com.example.opsc7312_poe_task2
-
+/*
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.example.opsc7312_poe_task2.databinding.FragmentHomeBinding
 import com.example.opsc7312_poe_task2.databinding.FragmentLoginBinding
 
 class LoginFragment : Fragment()
@@ -33,10 +35,10 @@ class LoginFragment : Fragment()
                 {
                     GlobalsClass.userAlert(GlobalsClass.user.userID.toString(), "", requireContext())
                     //Sends the user to the home page on successful login
-                    /*
-                    var intent = Intent(activity, Home_Activity::class.java)
+
+                    var intent = Intent(activity, FragmentHomeBinding::class.java)
                     startActivity(intent)
-                     */
+
                 }
             }
             else
@@ -55,3 +57,4 @@ class LoginFragment : Fragment()
         _binding = null
     }
 }
+*/
