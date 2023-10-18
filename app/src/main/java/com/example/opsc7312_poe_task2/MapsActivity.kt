@@ -31,8 +31,6 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
         mapView.getMapAsync { map ->
             googleMap = map
 
-            setContentView(R.layout.activity_maps)
-
             binding = ActivityMapsBinding.inflate(layoutInflater)
             setContentView(binding.root)
 
