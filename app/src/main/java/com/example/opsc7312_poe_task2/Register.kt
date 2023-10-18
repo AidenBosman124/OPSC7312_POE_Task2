@@ -31,7 +31,7 @@ class Register : AppCompatActivity() {
             if (username.text.isNotEmpty() && password.text.isNotEmpty()) {
                 val trySignUp = UserDataClass()
 
-                // Define your string resources here
+                /* Define your string resources here
                 val passwordResources = UserDataClass.PasswordResources(
                     getString(R.string.passwordShort),
                     getString(R.string.passwordNeedsNumber),
@@ -41,15 +41,17 @@ class Register : AppCompatActivity() {
                     getString(R.string.passwordSpecialCharacters)
                 )
 
-                val (validateUserPasswordBool, ) = trySignUp.ValidateUserPassword(password.text.toString(), passwordResources)
+                val (validateUserPasswordBool) = trySignUp.ValidateUserPassword(password.text.toString(), passwordResources)
 
-                if (validateUserPasswordBool) {
+                 */
+
+                //if (validateUserPasswordBool) {
                     trySignUp.RegisterUser(username.text.toString(), password.text.toString())
                     startActivity(Intent(this@Register, MainPage::class.java))
-                } else {
+                /*} else {
                     // Display an error message with password requirements
                     displayPasswordError()
-                }
+                }*/
             } else {
                 // Handle empty fields
             }
@@ -58,6 +60,7 @@ class Register : AppCompatActivity() {
         }
     }
 
+    /*
     private fun displayPasswordError() {
         Toast.makeText(this, "Sign up failed. Password requirements:\n" +  getString(R.string.passwordShort)
                 + "\n" + getString(R.string.passwordNeedsNumber) + "\n" +
@@ -66,4 +69,5 @@ class Register : AppCompatActivity() {
             getString(R.string.passwordNeedsSpecialCharacter) + "\n"+
             getString(R.string.passwordSpecialCharacters), Toast.LENGTH_LONG).show()
     }
+     */
 }
