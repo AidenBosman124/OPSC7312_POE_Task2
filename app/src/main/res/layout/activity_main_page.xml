@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".MainPage"
-    android:background="@drawable/BackgroundImage">
+    android:background="@drawable/bkgimg">
 
     <!-- Set a Background Image
        <ImageView
