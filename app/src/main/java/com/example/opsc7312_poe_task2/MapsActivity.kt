@@ -11,8 +11,7 @@ import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
 import com.example.opsc7312_poe_task2.databinding.ActivityMapsBinding
 import com.google.android.gms.maps.*
-import com.mapbox.mapboxsdk.Mapbox
-import com.mapbox.mapboxsdk.maps.MapView
+
 
 
 class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
@@ -32,7 +31,6 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
         mapView.getMapAsync { map ->
             googleMap = map
 
-            Mapbox.getInstance(this, "YOUR_MAPBOX_ACCESS_TOKEN") // Replace with your Mapbox access token
             setContentView(R.layout.activity_maps)
 
             binding = ActivityMapsBinding.inflate(layoutInflater)

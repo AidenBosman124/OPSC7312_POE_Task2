@@ -35,6 +35,7 @@
         android:layout_marginStart="232dp"
         android:layout_marginTop="120dp"
         android:ems="10"
+        android:hint="When Did You End"
         android:backgroundTint="@color/white"
         android:background="@drawable/custom_edittext"
         android:inputType="text"
@@ -72,6 +73,7 @@
         android:layout_marginStart="24dp"
         android:layout_marginTop="120dp"
         android:ems="10"
+        android:hint="When Do You Start"
         android:backgroundTint="@color/white"
         android:background="@drawable/custom_edittext"
         android:inputType="textPassword"
@@ -143,7 +145,6 @@
         android:layout_marginStart="12dp"
         android:layout_marginBottom="5dp"
         android:text="NOT SUBMITTED"
-        android:background=""
         app:layout_constraintBottom_toTopOf="@+id/txtcheclistnotsubmitted"
         app:layout_constraintStart_toStartOf="parent" />
 
