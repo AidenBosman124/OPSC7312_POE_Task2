@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Createchecklistsfrag">
+    tools:context=".Createchecklistsfrag"
+    android:background="@drawable/bkgimg">
 
     <!-- TODO: Update blank fragment layout -->
     <!--<TextView
