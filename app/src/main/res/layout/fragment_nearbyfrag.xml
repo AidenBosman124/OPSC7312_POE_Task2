@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Nearbyfrag">
+    tools:context=".Nearbyfrag"
+    android:background="@drawable/bkgimg">
 
     <TextView
         android:id="@+id/textView17"
@@ -47,6 +48,7 @@
         android:layout_marginTop="58dp"
         android:layout_marginEnd="14dp"
         android:ems="10"
+        android:backgroundTint="@color/white"
         android:background="@drawable/custom_edittext"
         android:inputType="textPassword"
         app:layout_constraintEnd_toEndOf="parent"
@@ -90,6 +92,7 @@
         android:layout_marginTop="10dp"
         android:layout_marginBottom="11dp"
         android:ems="10"
+        android:backgroundTint="@color/white"
         android:background="@drawable/custom_edittext"
         android:inputType="textPassword"
         app:layout_constraintBottom_toTopOf="@+id/txtRegPassword"
@@ -103,6 +106,7 @@
         android:layout_height="35dp"
         android:layout_marginEnd="12dp"
         android:ems="10"
+        android:backgroundTint="@color/white"
         android:background="@drawable/custom_edittext"
         android:inputType="textPassword"
         app:layout_constraintBottom_toTopOf="@+id/textView21"
@@ -137,6 +141,7 @@
         android:layout_marginBottom="123dp"
         android:background="@drawable/custom_edittext"
         android:progress="25"
+        android:backgroundTint="@color/white"
         android:progressTint="@color/light_blue"
         android:thumbTint="@color/light_blue"
         app:layout_constraintBottom_toTopOf="@+id/txtRegPassword"

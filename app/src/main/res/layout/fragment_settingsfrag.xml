@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Settingsfrag">
+    tools:context=".Settingsfrag"
+    android:background="@drawable/bkgimg">
 
     <!-- TODO: Update blank fragment layout -->
     <!-- <TextView
@@ -28,9 +29,10 @@
     <EditText
         android:id="@+id/txtmaxdistance"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="35dp"
         android:layout_marginBottom="377dp"
         android:ems="10"
+        android:backgroundTint="@color/white"
         android:background="@drawable/custom_edittext"
         android:inputType="textPassword"
         app:layout_constraintBottom_toBottomOf="parent"
