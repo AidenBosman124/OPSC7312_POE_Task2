@@ -31,6 +31,7 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="377dp"
         android:ems="10"
+        android:background="@drawable/custom_edittext"
         android:inputType="textPassword"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -48,6 +49,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView7" />
 
+
     <Button
         android:id="@+id/btnkilometres"
         android:layout_width="wrap_content"
@@ -55,11 +57,15 @@
         android:layout_marginStart="21dp"
         android:layout_marginTop="28dp"
         android:layout_marginEnd="163dp"
+        android:backgroundTint="@color/light_blue"
         android:text="Kilometres"
-        app:layout_constraintBottom_toTopOf="@+id/textView9"
+        app:cornerRadius="20dp"
+        app:layout_constraintBottom_toTopOf="@+id/textView33"
         app:layout_constraintEnd_toStartOf="@+id/btnmiles"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView33" />
+        app:layout_constraintTop_toBottomOf="@+id/textView33"
+        app:layout_constraintVertical_bias="0.0" />
+
 
     <Button
         android:id="@+id/btnmiles"
@@ -67,7 +73,9 @@
         android:layout_height="0dp"
         android:layout_marginEnd="22dp"
         android:layout_marginBottom="55dp"
+        android:backgroundTint="@color/light_blue"
         android:text="Miles"
+        app:cornerRadius="20dp"
         app:layout_constraintBottom_toTopOf="@+id/textView34"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/btnkilometres"
