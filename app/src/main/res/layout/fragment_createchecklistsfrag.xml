@@ -26,12 +26,13 @@
     <EditText
         android:id="@+id/editTextText2"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="35dp"
         android:layout_marginTop="114dp"
         android:layout_marginEnd="14dp"
         android:ems="10"
         android:inputType="text"
         android:text="Name"
+        android:background="@drawable/custom_edittext"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -41,6 +42,8 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="33dp"
         android:text="Create"
+        android:backgroundTint="@color/light_blue"
+        app:cornerRadius="20dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editTextText4" />
@@ -58,10 +61,11 @@
     <EditText
         android:id="@+id/editTextText4"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="35dp "
         android:layout_marginTop="26dp"
         android:layout_marginEnd="14dp"
         android:ems="10"
+        android:background="@drawable/custom_edittext"
         android:inputType="text"
         android:text="Date"
         app:layout_constraintEnd_toEndOf="parent"
@@ -90,10 +94,11 @@
     <EditText
         android:id="@+id/editTextText3"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="35dp "
         android:layout_marginTop="22dp"
         android:layout_marginEnd="14dp"
         android:ems="10"
+        android:background="@drawable/custom_edittext"
         android:inputType="text"
         android:text="Location"
         app:layout_constraintEnd_toEndOf="parent"

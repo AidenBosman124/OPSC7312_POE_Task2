@@ -6,7 +6,6 @@
     android:layout_height="match_parent"
     tools:context=".Checklistsfrag">
 
-
     <TextView
         android:id="@+id/textView23"
         android:layout_width="wrap_content"
@@ -14,6 +13,7 @@
         android:layout_marginEnd="128dp"
         android:layout_marginBottom="19dp"
         android:text="Checklists/Observations"
+
         app:layout_constraintBottom_toTopOf="@+id/textView26"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/editTextTextMultiLine" />
@@ -34,6 +34,7 @@
         android:layout_marginStart="232dp"
         android:layout_marginTop="120dp"
         android:ems="10"
+        android:background="@drawable/custom_edittext"
         android:inputType="text"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView24" />
@@ -44,6 +45,8 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:text="Minus"
+        app:cornerRadius="20dp"
+        android:backgroundTint="@color/light_blue"
         app:layout_constraintEnd_toStartOf="@+id/btnadd"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txtcheklistdate" />
@@ -54,6 +57,8 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:text="Plus"
+        app:cornerRadius="20dp"
+        android:backgroundTint="@color/light_blue"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/btminus"
         app:layout_constraintTop_toBottomOf="@+id/txtcheklistdate" />
@@ -65,6 +70,7 @@
         android:layout_marginStart="24dp"
         android:layout_marginTop="120dp"
         android:ems="10"
+        android:background="@drawable/custom_edittext"
         android:inputType="textPassword"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView24" />
@@ -105,6 +111,7 @@
         android:layout_marginStart="13dp"
         android:layout_marginEnd="10dp"
         android:ems="10"
+        android:background="@drawable/custom_edittext"
         android:gravity="start|top"
         android:inputType="textMultiLine"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -118,6 +125,7 @@
         android:layout_height="48dp"
         android:ems="10"
         android:gravity="start|top"
+        android:background="@drawable/custom_edittext"
         android:inputType="textMultiLine"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -130,6 +138,7 @@
         android:layout_marginStart="12dp"
         android:layout_marginBottom="5dp"
         android:text="NOT SUBMITTED"
+        android:background=""
         app:layout_constraintBottom_toTopOf="@+id/txtcheclistnotsubmitted"
         app:layout_constraintStart_toStartOf="parent" />
 
