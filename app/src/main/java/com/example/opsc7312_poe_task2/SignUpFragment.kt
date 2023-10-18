@@ -1,4 +1,5 @@
-package com.example.opsc_poe
+package com.example.opsc7312_poe_task2
+/*
 
 import android.annotation.SuppressLint
 import android.os.Bundle
@@ -6,9 +7,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import com.example.opsc7312_poe_task2.GlobalsClass
-import com.example.opsc7312_poe_task2.R
-import com.example.opsc7312_poe_task2.UserDataClass
 import com.example.opsc7312_poe_task2.databinding.FragmentSignUpBinding
 
 class SignUpFragment : Fragment(R.layout.fragment_sign_up){
@@ -74,3 +72,4 @@ class SignUpFragment : Fragment(R.layout.fragment_sign_up){
     }
 
 }
+ */
