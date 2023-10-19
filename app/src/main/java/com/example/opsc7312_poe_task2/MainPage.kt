@@ -15,7 +15,6 @@ class MainPage : AppCompatActivity() {
     private lateinit var navigationView: NavigationView
     private val setFragment = Settingsfrag()
     private val birdsfrag = Birdsfrag()
-    private val checklistsfrag = Checklistsfrag()
     private val createchecklistsfrag = Createchecklistsfrag()
     private val nearbyfrag = Nearbyfrag()
 
@@ -54,11 +53,6 @@ class MainPage : AppCompatActivity() {
                 }
                 R.id.nav_createchecklist -> {
                     switchFragment(createchecklistsfrag)
-                    drawerLayout.closeDrawer(GravityCompat.START)
-                    true
-                }
-                R.id.nav_checklist -> {
-                    switchFragment(checklistsfrag)
                     drawerLayout.closeDrawer(GravityCompat.START)
                     true
                 }
