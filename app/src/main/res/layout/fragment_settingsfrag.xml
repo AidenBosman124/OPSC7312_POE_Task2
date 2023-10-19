@@ -21,6 +21,7 @@
         android:layout_marginTop="40dp"
         android:layout_marginBottom="43dp"
         android:text="Settings"
+        android:background="@color/white"
         app:layout_constraintBottom_toTopOf="@+id/textView33"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -28,13 +29,14 @@
 
     <EditText
         android:id="@+id/txtmaxdistance"
-        android:layout_width="wrap_content"
-        android:layout_height="35dp"
+        android:layout_width="219dp"
+        android:layout_height="50dp"
         android:layout_marginBottom="377dp"
-        android:ems="10"
-        android:backgroundTint="@color/white"
         android:background="@drawable/custom_edittext"
+        android:backgroundTint="@color/white"
+        android:ems="10"
         android:inputType="textPassword"
+        android:contentDescription="Enter Maximum Distance"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -47,6 +49,7 @@
         android:layout_marginStart="21dp"
         android:layout_marginBottom="28dp"
         android:text="Toggle metric system (kilometres)/imperial system (miles)"
+        android:background="@color/white"
         app:layout_constraintBottom_toTopOf="@+id/btnmiles"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView7" />
@@ -71,8 +74,8 @@
 
     <Button
         android:id="@+id/btnmiles"
-        android:layout_width="wrap_content"
-        android:layout_height="0dp"
+        android:layout_width="97dp"
+        android:layout_height="53dp"
         android:layout_marginEnd="22dp"
         android:layout_marginBottom="55dp"
         android:backgroundTint="@color/light_blue"
@@ -90,7 +93,8 @@
         android:layout_marginStart="36dp"
         android:layout_marginBottom="35dp"
         android:text="Maximum distance to travel to a bird watching hotspot"
+        android:background="@color/white"
         app:layout_constraintBottom_toTopOf="@+id/txtmaxdistance"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnmiles" />-->
+        app:layout_constraintTop_toBottomOf="@+id/btnmiles" />
 </androidx.constraintlayout.widget.ConstraintLayout>
