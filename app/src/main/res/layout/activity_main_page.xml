@@ -9,15 +9,6 @@
     tools:context=".MainPage"
     android:background="@drawable/bkgimg">
 
-    <!-- Set a Background Image
-       <ImageView
-       android:id="@+id/backgroundimg2"
-       android:layout_width="match_parent"
-       android:layout_height="match_parent"
-       android:scaleType="centerCrop"
-       android:src="@drawable/background" />
-       -->
-
     <!-- Header -->
     <RelativeLayout
         android:id="@+id/headerLayout"

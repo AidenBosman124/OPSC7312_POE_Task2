@@ -57,17 +57,16 @@
                 android:orientation="horizontal">
 
                 <EditText
+                    android:id="@+id/etNewPassword"
                     android:layout_width="200dp"
                     android:layout_height="50dp"
-                    android:id="@+id/etNewPassword"
                     android:background="@drawable/custom_edittext"
-                    android:inputType="textPassword"
-                    android:padding="8dp"
-                    android:hint="Password"
                     android:drawableLeft="@drawable/baseline_lock_24"
-                    android:textColor="@color/black"
                     android:drawablePadding="8dp"
-                    />
+                    android:hint="Password"
+                    android:padding="8dp"
+                    android:textColor="@color/black" />
+
                 <Button
                     android:id="@+id/showHideBtn"
                     android:layout_width="90dp"

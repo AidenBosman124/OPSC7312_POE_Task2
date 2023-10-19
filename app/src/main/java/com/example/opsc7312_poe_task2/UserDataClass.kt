@@ -3,44 +3,25 @@ package com.example.opsc7312_poe_task2
 import android.annotation.SuppressLint
 import android.content.Context
 
-
-class UserDataClass
-    (
+class UserDataClass(
     var userID: Int = 0,
     var username: String = "",
     var password: String = ""
-    )
-{
+) {
 
-
-    fun ValidateUser(userName: String, userPassword: String): Boolean
-    {
-        //val PasswordManager = PasswordClass(context)
-
-        //loop through users
-        for (i in GlobalsClass.userList.indices)
-        {
-
-            //if the entered username matches an existing username
-            if (userName == GlobalsClass.userList[i].username)
-            {
-                //if user exists
-                if (userPassword == GlobalsClass.userList[i].password)
-                {
-                    //if the user password is correct
-                    userID = GlobalsClass.userList[i].userID
-                    username = userName
-                    password = GlobalsClass.userList[i].password
-                    //Send the data to globals
-                    GlobalsClass.user.userID = userID
-                    GlobalsClass.user.username = username
-                    GlobalsClass.user.password = password
-                    //exit loop
-                    break
-                }
+    fun ValidateUser(userName: String, userPassword: String): Boolean {
+        for (user in GlobalsClass.userList) {
+            if (userName == user.username && userPassword == user.password) {
+                userID = user.userID
+                username = userName
+                password = user.password
+                GlobalsClass.user.userID = userID
+                GlobalsClass.user.username = username
+                GlobalsClass.user.password = password
+                return true
             }
         }
-        return userID != 0
+        return false
     }
 
     @SuppressLint("SuspiciousIndentation")
@@ -84,47 +65,15 @@ class UserDataClass
         val passwordSpecialCharacters: String
     )
 
-
-    fun RegisterUser(userUsername : String, userPassword: String)
-    {
-        var userExists = false
-
-
-        //loop through users
-        for(i in GlobalsClass.userList.indices)
-        {
-            //check to see if there is already a user with the given information
-            if (userUsername == GlobalsClass.userList[i].username)
-            {
-                //If the user already exists set the user exists variable to true
-                userExists = true
-                //exit loop
-                break
-            }
-        }
-
-        //check if the user matching the given data exists or conflicts
-        if (!userExists) {
-            //if the user doesn't conflict with existing data then register the user
-
-
-            var userIDs = ArrayList<Int>()
-            for (j in GlobalsClass.userList.indices)
-            {
-                userIDs.add(GlobalsClass.userList[j].userID)
-            }
-
-            var lastID = userIDs.max()
-            //val currentLastUserIDIndex = GlobalClass.allUsers.last().userID//GlobalClass.listUserUserID.last()
-
-            var newUserUserIDIndex = lastID + 1
-
-
-            var newUser = UserDataClass(newUserUserIDIndex, userUsername, userPassword)
-
+    fun RegisterUser(userUsername: String, userPassword: String) {
+        if (GlobalsClass.userList.any { it.username == userUsername }) {
+            // User already exists
+            // Handle this case as needed (show an error message or take appropriate action)
+        } else {
+            val lastID = GlobalsClass.userList.maxByOrNull { it.userID }?.userID ?: 0
+            val newUserUserIDIndex = lastID + 1
+            val newUser = UserDataClass(newUserUserIDIndex, userUsername, userPassword)
             GlobalsClass.userList.add(newUser)
         }
-
-
     }
 }
