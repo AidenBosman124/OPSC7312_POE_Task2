@@ -22,6 +22,8 @@
         <activity
             android:name=".Login"
             android:exported="false" />
+        <activity android:name=".MapsActivity"
+            android:exported="true"/>
         <activity
             android:name=".StartPage"
             android:exported="true" >
@@ -44,7 +46,7 @@
         -->
         <meta-data
             android:name="com.google.android.geo.API_KEY"
-            android:value="YOUR_API_KEY" />
+            android:value="AIzaSyBtY6H9DrcG7C77YjH5oLOk4vF-M4wrSdI" />
 
         <!--
         <activity
