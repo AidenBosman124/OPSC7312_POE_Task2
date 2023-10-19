@@ -19,8 +19,8 @@ class Birdsfrag : Fragment() {
 
         // Initialize your list of bird items here
         val birdItems = listOf(
-            BirdItem(R.drawable.bird1, "Bird 1", "2023-10-20", "Location 1"),
-            BirdItem(R.drawable.bird2, "Bird 2", "2023-10-21", "Location 2"),
+            BirdItem(R.mipmap.ic_launcher_round, "Bird 1", "2023-10-20", "Location 1"),
+            BirdItem(R.mipmap.ic_launcher_round, "Bird 2", "2023-10-21", "Location 2"),
             // Add more bird items as needed
         )
 
