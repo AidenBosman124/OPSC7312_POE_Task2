@@ -35,7 +35,6 @@
         android:background="@drawable/custom_edittext"
         android:backgroundTint="@color/white"
         android:ems="10"
-        android:inputType="textPassword"
         android:contentDescription="Enter Maximum Distance"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
