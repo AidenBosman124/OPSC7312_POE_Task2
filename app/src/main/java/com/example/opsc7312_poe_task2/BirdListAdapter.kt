@@ -10,7 +10,7 @@ import androidx.fragment.app.Fragment
 
 data class BirdItem(val img: Int, val name: String, val dateTime: String, val location: String)
 
-class BirdListAdapter(private val itemList: List<BirdItem>, private val fragment: Fragment) :
+class BirdListAdapter(private val itemList: List<BirdItem>) :
     RecyclerView.Adapter<BirdListAdapter.ViewHolder>() {
 
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
