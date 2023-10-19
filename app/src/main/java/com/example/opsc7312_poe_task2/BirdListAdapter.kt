@@ -10,7 +10,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 
-class BirdListAdapter(private val birdItems: List<BirdItem>, private val context: Context) :
+class BirdListAdapter(private val birdItems: List<BirdItem>) :
     RecyclerView.Adapter<BirdListAdapter.BirdViewHolder>() {
 
     class BirdViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
