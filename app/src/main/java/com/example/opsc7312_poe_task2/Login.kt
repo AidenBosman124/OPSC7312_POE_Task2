@@ -45,6 +45,7 @@ class Login : AppCompatActivity()
 
     private fun logIn()
     {
+        /*
         val password = findViewById<EditText>(R.id.etPassword)
         val username = findViewById<EditText>(R.id.etUsername)
         if (username.text.isNotEmpty() &&  password.text.isNotEmpty())
@@ -53,13 +54,14 @@ class Login : AppCompatActivity()
             val trySubmitSignIn = trySignIn.ValidateUser(password.text.toString(),password.text.toString())
 
             if (trySubmitSignIn)
-            {
+            {*/
                 startActivity(Intent(this@Login, MainPage::class.java))
+        /*
             }
         }
         else
         {
 
-        }
+        }*/
     }
 }
