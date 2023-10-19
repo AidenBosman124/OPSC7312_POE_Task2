@@ -7,13 +7,7 @@
     tools:context=".Createchecklistsfrag"
     android:background="@drawable/bkgimg">
 
-    <!-- TODO: Update blank fragment layout -->
-    <!--<TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />-->
-    <!--Create Checklists-->
-
+    <!-- Title: Create Checklist -->
     <TextView
         android:id="@+id/textView29"
         android:layout_width="wrap_content"
@@ -25,6 +19,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <!-- Bird Name Input Field -->
     <EditText
         android:id="@+id/editTextText2"
         android:layout_width="wrap_content"
@@ -39,19 +34,21 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <!-- Create Button -->
+
+    <!-- Sighting Date Label -->
 
     <Button
         android:id="@+id/button4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="33dp"
-        android:text="Create"
+        android:layout_marginTop="316dp"
         android:backgroundTint="@color/light_blue"
+        android:text="Create"
         app:cornerRadius="20dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextText4" />
-
+        app:layout_constraintTop_toBottomOf="@+id/editTextText2" />
 
     <TextView
         android:id="@+id/textView30"
@@ -64,6 +61,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView8" />
 
+    <!-- Date Input Field -->
     <EditText
         android:id="@+id/editTextText4"
         android:layout_width="wrap_content"
@@ -78,6 +76,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editTextText3" />
 
+    <!-- Sighting Location Date Label -->
     <TextView
         android:id="@+id/textView32"
         android:layout_width="wrap_content"
@@ -89,6 +88,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView31" />
 
+    <!-- Sighting Location Label -->
     <TextView
         android:id="@+id/textView31"
         android:layout_width="wrap_content"
@@ -100,6 +100,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView30" />
 
+    <!-- Location Input Field -->
     <EditText
         android:id="@+id/editTextText3"
         android:layout_width="wrap_content"
@@ -114,6 +115,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editTextText2" />
 
+    <!-- Description Label -->
     <TextView
         android:id="@+id/textView8"
         android:layout_width="wrap_content"
