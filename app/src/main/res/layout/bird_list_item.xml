@@ -8,20 +8,10 @@
     android:padding="8dp"
     tools:context=".BirdListAdapter">
 
-    <Button
-        android:id="@+id/btnMain"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:backgroundTint="@color/light_blue"
-        android:textSize="18sp"
-        app:cornerRadius="20dp"
-        android:text="Main Page" />
-
     <ImageView
         android:id="@+id/birdImage"
         android:layout_width="64dp"
         android:layout_height="64dp"
-        android:layout_below="@id/btnMain"
         android:src="@mipmap/ic_launcher_round"
         android:layout_centerVertical="true" />
 
@@ -29,7 +19,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:layout_below="@id/btnMain"
         android:layout_toEndOf="@id/birdImage"
         android:layout_marginStart="8dp">
 
