@@ -1,24 +1,30 @@
 package com.example.opsc7312_poe_task2
 
+import android.Manifest
+import android.content.Context
+import android.content.pm.PackageManager
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
+import android.widget.EditText
 import android.widget.Toast
-import android.location.Location
-import android.location.Geocoder
-import android.Manifest
-import android.content.pm.PackageManager
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import androidx.fragment.app.Fragment
 import com.example.opsc7312_poe_task2.databinding.FragmentCreatechecklistsfragBinding
+import android.location.Location
+import android.location.LocationListener
+import android.location.LocationManager
 import java.text.SimpleDateFormat
 import java.util.*
 
 class Createchecklistsfrag : Fragment() {
     private var binding: FragmentCreatechecklistsfragBinding? = null
-    private lateinit var currentLocation: Location
+    private var currentLocation: Location? = null
+    private var locationManager: LocationManager? = null
+    private val locationPermissionCode = 123
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -26,6 +32,8 @@ class Createchecklistsfrag : Fragment() {
     ): View? {
         binding = FragmentCreatechecklistsfragBinding.inflate(inflater, container, false)
         val createchecklistsfrag = binding?.root
+
+        locationManager = requireActivity().getSystemService(Context.LOCATION_SERVICE) as LocationManager
 
         // Request location permissions if not already granted
         if (ContextCompat.checkSelfPermission(
@@ -36,16 +44,39 @@ class Createchecklistsfrag : Fragment() {
             ActivityCompat.requestPermissions(
                 requireActivity(),
                 arrayOf(Manifest.permission.ACCESS_FINE_LOCATION),
-                REQUEST_LOCATION_PERMISSION
+                locationPermissionCode
             )
         } else {
-            // Location permission is granted, initialize location service
-            // This is where you would set up the location service and get the user's location
-            // For this example, let's assume you have a function called 'getUserLocation' to get the location.
-            currentLocation = getUserLocation()
+            // Location permission is granted, request location updates
+            try {
+                locationManager?.requestLocationUpdates(
+                    LocationManager.GPS_PROVIDER,
+                    1000, 10f,
+                    object : LocationListener {
+                        override fun onLocationChanged(location: Location) {
+                            currentLocation = location
+                        }
 
-            // Set a click listener for your button
-            binding?.button4?.setOnClickListener {
+                        override fun onStatusChanged(provider: String?, status: Int, extras: Bundle?) {
+                            // Handle status changes if needed
+                        }
+
+                        override fun onProviderEnabled(provider: String) {
+                            // Handle provider enabled event if needed
+                        }
+
+                        override fun onProviderDisabled(provider: String) {
+                            // Handle provider disabled event if needed
+                        }
+                    }
+                )
+            } catch (e: SecurityException) {
+                e.printStackTrace()
+            }
+
+            // Set a click listener for your "Create" button
+            val button4 = createchecklistsfrag?.findViewById<Button>(R.id.button4)
+            button4?.setOnClickListener {
                 val name = binding?.editTextText2?.text.toString()
                 val date = binding?.editTextText4?.text.toString()
                 val location = binding?.editTextText3?.text.toString()
@@ -53,11 +84,27 @@ class Createchecklistsfrag : Fragment() {
                 // Handle your button click here
                 // You can use the name, date, and location as needed.
                 // For example, you can display the values in a toast message:
-                val message = "Name: $name\nDate: $date\nLocation: $location\nCurrent Location: Lat: ${currentLocation.latitude}, Long: ${currentLocation.longitude}"
+                val message = "Name: $name\nDate: $date\nLocation: $location\nCurrent Location: Lat: ${
+                    currentLocation?.latitude ?: 0.0
+                }, Long: ${currentLocation?.longitude ?: 0.0}"
                 Toast.makeText(requireContext(), message, Toast.LENGTH_SHORT).show()
 
                 // Call the saveEntry function with the provided data
                 saveEntry(name, location, date)
+            }
+
+            // Set click listeners for the "Add" and "Refresh" buttons
+            val btnAdd = createchecklistsfrag?.findViewById<Button>(R.id.btnAdd)
+            val btnRefresh = createchecklistsfrag?.findViewById<Button>(R.id.btnRefresh)
+
+            btnAdd?.setOnClickListener {
+                // Handle the "Add" button click here
+                btnAddClick()
+            }
+
+            btnRefresh?.setOnClickListener {
+                // Handle the "Refresh" button click here
+                btnRefreshClick()
             }
         }
 
@@ -67,15 +114,6 @@ class Createchecklistsfrag : Fragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         binding = null
-    }
-
-    private fun getUserLocation(): Location {
-        // In a real app, you would use location services or the device's GPS to get the user's location.
-        // For the sake of this example, we'll create a dummy location.
-        val location = Location("dummy")
-        location.latitude = 40.7128 // Example latitude
-        location.longitude = -74.0060 // Example longitude
-        return location
     }
 
     private fun saveEntry(name: String, location: String, date: String) {
@@ -90,7 +128,42 @@ class Createchecklistsfrag : Fragment() {
         // YourDatabaseClass.saveEntry(name, location, date)
     }
 
+    private fun btnAddClick() {
+        val name = binding?.editTextText2?.text.toString()
+        val date = binding?.editTextText4?.text.toString()
+        val location = binding?.editTextText3?.text.toString()
+
+        // Check if any of the fields are empty
+        if (name.isBlank() || date.isBlank() || location.isBlank()) {
+            Toast.makeText(requireContext(), "Please fill in all fields", Toast.LENGTH_SHORT).show()
+            return
+        }
+
+        // You can perform an action when the "Add" button is clicked.
+        // For example, you can add the checklist/observation to a list or database.
+
+        // Here's a sample action:
+        val newEntry = "Name: $name, Date: $date, Location: $location"
+        // Store or display the newEntry as needed
+
+        // Clear the input fields
+        binding?.editTextText2?.text?.clear()
+        binding?.editTextText4?.text?.clear()
+        binding?.editTextText3?.text?.clear()
+
+        Toast.makeText(requireContext(), "Added: $newEntry", Toast.LENGTH_SHORT).show()
+    }
+
+    private fun btnRefreshClick() {
+        // Handle the "Refresh" button click.
+        // You can implement a refresh action here.
+        // For example, if you have a list of checklists/observations, you can reload or refresh the list.
+        // You can also update any other UI components or data that needs to be refreshed.
+
+        Toast.makeText(requireContext(), "Refreshed", Toast.LENGTH_SHORT).show()
+    }
+
     companion object {
-        private const val REQUEST_LOCATION_PERMISSION = 123
+        private const val locationPermissionCode = 123
     }
 }

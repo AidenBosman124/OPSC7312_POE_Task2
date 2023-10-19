@@ -17,10 +17,14 @@ class Birdsfrag : Fragment() {
         val birdsfrag = inflater.inflate(R.layout.fragment_birdsfrag, container, false)
         val recyclerView = birdsfrag.findViewById<RecyclerView>(R.id.recyclerView)
 
-        // Initialize your list of bird items here
+        // Retrieve data from arguments with default values
+        val birdName = arguments?.getString("birdName", "Bird 1") ?: "Bird 1"
+        val sightingDate = arguments?.getString("sightingDate", "2023-10-20") ?: "2023-10-20"
+        val sightingLocation = arguments?.getString("sightingLocation", "Location 1") ?: "Location 1"
+
+        // Initialize your list of bird items using the retrieved data
         val birdItems = listOf(
-            BirdItem(R.mipmap.ic_launcher_round, "Bird 1", "2023-10-20", "Location 1"),
-            BirdItem(R.mipmap.ic_launcher_round, "Bird 2", "2023-10-21", "Location 2"),
+            BirdItem(R.mipmap.ic_launcher_round, birdName, sightingDate, sightingLocation)
             // Add more bird items as needed
         )
 
@@ -32,4 +36,3 @@ class Birdsfrag : Fragment() {
         return birdsfrag
     }
 }
-
