@@ -20,6 +20,6 @@
         <item
             android:icon="@drawable/baseline_map_24"
             android:id="@+id/nav_hotspots"
-            android:title="Maps"/>
+            android:title="Hotspot"/>
     </group>
 </menu>
