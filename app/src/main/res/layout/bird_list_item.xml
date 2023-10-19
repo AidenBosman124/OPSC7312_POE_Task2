@@ -1,46 +1,62 @@
-<!-- bird_list_item.xml -->
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:padding="8dp"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".BirdListAdapter">
 
-    <ImageView
-        android:id="@+id/birdImage"
-        android:layout_width="64dp"
-        android:layout_height="64dp"
-        android:src="@mipmap/ic_launcher_round"
-        android:layout_centerVertical="true" />
-
+    <!-- Existing layout -->
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:layout_toEndOf="@id/birdImage"
-        android:layout_marginStart="8dp">
+        android:layout_height="80dp"
+        android:layout_marginBottom="2dp">
 
-        <TextView
-            android:id="@+id/birdName"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Bird Name"
-            android:textSize="18sp" />
+        <ImageView
+            android:id="@+id/birdImage"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:src="@drawable/bkgimg"
+            android:scaleType="centerCrop" />
 
-        <TextView
-            android:id="@+id/birdDate"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="2023-10-20"
-            android:textSize="14sp" />
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="80dp"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:weightSum="3">
 
-        <TextView
-            android:id="@+id/birdLocation"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Location"
-            android:textSize="14sp" />
+            <TextView
+                android:id="@+id/birdName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Name"
+                android:layout_weight="1" />
+
+            <TextView
+                android:id="@+id/birdDate"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Date"
+                android:layout_weight="1" />
+
+            <TextView
+                android:id="@+id/birdLocation"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Location"
+                android:layout_weight="1" />
+
+        </LinearLayout>
     </LinearLayout>
-</RelativeLayout>
+
+    <!-- RecyclerView to display list items -->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:scrollbars="vertical"
+        android:overScrollMode="never" />
+</LinearLayout>
