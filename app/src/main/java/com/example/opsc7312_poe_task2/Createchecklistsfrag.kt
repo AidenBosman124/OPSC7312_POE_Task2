@@ -55,6 +55,9 @@ class Createchecklistsfrag : Fragment() {
                 // For example, you can display the values in a toast message:
                 val message = "Name: $name\nDate: $date\nLocation: $location\nCurrent Location: Lat: ${currentLocation.latitude}, Long: ${currentLocation.longitude}"
                 Toast.makeText(requireContext(), message, Toast.LENGTH_SHORT).show()
+
+                // Call the saveEntry function with the provided data
+                saveEntry(name, location, date)
             }
         }
 
@@ -73,6 +76,18 @@ class Createchecklistsfrag : Fragment() {
         location.latitude = 40.7128 // Example latitude
         location.longitude = -74.0060 // Example longitude
         return location
+    }
+
+    private fun saveEntry(name: String, location: String, date: String) {
+        // Implement your logic to save the entry here
+        // This is where you can save the data to a database or perform other actions.
+        // For example, you can display a toast message:
+        val message = "Saved!\nName: $name\nDate: $date\nLocation: $location"
+        Toast.makeText(requireContext(), message, Toast.LENGTH_SHORT).show()
+
+        // You can save the data to a database or perform other actions here.
+        // For example:
+        // YourDatabaseClass.saveEntry(name, location, date)
     }
 
     companion object {
