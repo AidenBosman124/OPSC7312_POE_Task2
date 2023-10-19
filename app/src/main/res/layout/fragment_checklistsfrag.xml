@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -9,35 +10,36 @@
 
     <TextView
         android:id="@+id/textView23"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="128dp"
-        android:layout_marginBottom="19dp"
+        android:layout_width="167dp"
+        android:layout_height="37dp"
+        android:layout_marginTop="16dp"
         android:text="Checklists/Observations"
-
-        app:layout_constraintBottom_toTopOf="@+id/textView26"
+        android:background="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/editTextTextMultiLine" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/textView24"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="44dp"
+        android:layout_width="160dp"
+        android:layout_height="34dp"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="12dp"
+        android:background="@color/white"
         android:text="DATE"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView23" />
 
     <EditText
         android:id="@+id/txtcheklistdate"
-        android:layout_width="150dp"
-        android:layout_height="43dp"
+        android:layout_width="159dp"
+        android:layout_height="54dp"
         android:layout_marginStart="232dp"
         android:layout_marginTop="120dp"
+        android:background="@drawable/custom_edittext"
+        android:backgroundTint="@color/white"
         android:ems="10"
         android:hint="When Did You End"
-        android:backgroundTint="@color/white"
-        android:background="@drawable/custom_edittext"
         android:inputType="text"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView24" />
@@ -46,11 +48,11 @@
         android:id="@+id/btminus"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="56dp"
         android:layout_marginTop="16dp"
+        android:backgroundTint="@color/light_blue"
         android:text="Minus"
         app:cornerRadius="20dp"
-        android:backgroundTint="@color/light_blue"
-        app:layout_constraintEnd_toStartOf="@+id/btnadd"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txtcheklistdate" />
 
@@ -58,24 +60,24 @@
         android:id="@+id/btnadd"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
         android:text="Plus"
         app:cornerRadius="20dp"
         android:backgroundTint="@color/light_blue"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/btminus"
-        app:layout_constraintTop_toBottomOf="@+id/txtcheklistdate" />
+        app:layout_constraintTop_toBottomOf="@+id/txtcheklistdate"
+        android:layout_marginTop="16dp" />
 
     <EditText
         android:id="@+id/txtcheliststarttime"
-        android:layout_width="159dp"
-        android:layout_height="42dp"
+        android:layout_width="169dp"
+        android:layout_height="51dp"
         android:layout_marginStart="24dp"
         android:layout_marginTop="120dp"
+        android:background="@drawable/custom_edittext"
+        android:backgroundTint="@color/white"
         android:ems="10"
         android:hint="When Do You Start"
-        android:backgroundTint="@color/white"
-        android:background="@drawable/custom_edittext"
         android:inputType="textPassword"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView24" />
@@ -94,9 +96,10 @@
         android:id="@+id/textView26"
         android:layout_width="386dp"
         android:layout_height="40dp"
-        android:layout_marginStart="13dp"
-        android:layout_marginTop="74dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="116dp"
         android:text="Created and submitted Checklists/Observations stored here."
+        android:background="@color/white"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -106,8 +109,10 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="3dp"
         android:text="SUBMITTED"
+        android:background="@color/white"
         app:layout_constraintBottom_toTopOf="@+id/txtcheclistsubmitted"
         app:layout_constraintEnd_toEndOf="@+id/txtcheclistsubmitted" />
+
 
     <EditText
         android:id="@+id/txtcheclistsubmitted"
@@ -115,28 +120,34 @@
         android:layout_height="49dp"
         android:layout_marginStart="13dp"
         android:layout_marginEnd="10dp"
-        android:ems="10"
-        android:backgroundTint="@color/white"
         android:background="@drawable/custom_edittext"
+        android:backgroundTint="@color/white"
+        android:contentDescription="Enter Submitted Checklist Text"
+        android:ems="10"
         android:gravity="start|top"
         android:inputType="textMultiLine"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@+id/txtcheclistnotsubmitted"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.554" />
+
 
     <EditText
         android:id="@+id/txtcheclistnotsubmitted"
         android:layout_width="188dp"
         android:layout_height="48dp"
+        android:background="@drawable/custom_edittext"
+        android:backgroundTint="@color/white"
+        android:contentDescription="Enter Not Submitted Checklist Text"
         android:ems="10"
         android:gravity="start|top"
-        android:background="@drawable/custom_edittext"
         android:inputType="textMultiLine"
-        android:backgroundTint="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.553" />
 
     <TextView
         android:id="@+id/textView27"
@@ -145,6 +156,7 @@
         android:layout_marginStart="12dp"
         android:layout_marginBottom="5dp"
         android:text="NOT SUBMITTED"
+        android:background="@color/white"
         app:layout_constraintBottom_toTopOf="@+id/txtcheclistnotsubmitted"
         app:layout_constraintStart_toStartOf="parent" />
 
