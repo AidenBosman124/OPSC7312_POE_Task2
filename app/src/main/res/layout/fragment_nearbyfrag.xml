@@ -50,7 +50,6 @@
         android:ems="10"
         android:backgroundTint="@color/white"
         android:background="@drawable/custom_edittext"
-        android:inputType="textPassword"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -94,7 +93,6 @@
         android:ems="10"
         android:backgroundTint="@color/white"
         android:background="@drawable/custom_edittext"
-        android:inputType="textPassword"
         app:layout_constraintBottom_toTopOf="@+id/txtRegPassword"
         app:layout_constraintEnd_toEndOf="@+id/txtRegPassword"
         app:layout_constraintStart_toStartOf="@+id/txtRegPassword"
@@ -108,7 +106,6 @@
         android:ems="10"
         android:backgroundTint="@color/white"
         android:background="@drawable/custom_edittext"
-        android:inputType="textPassword"
         app:layout_constraintBottom_toTopOf="@+id/textView21"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@+id/textView21" />
