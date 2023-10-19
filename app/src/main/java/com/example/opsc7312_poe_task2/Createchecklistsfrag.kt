@@ -2,6 +2,7 @@ package com.example.opsc7312_poe_task2
 
 import android.Manifest
 import android.content.Context
+import android.content.Intent
 import android.content.pm.PackageManager
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -96,6 +97,7 @@ class Createchecklistsfrag : Fragment() {
             // Set click listeners for the "Add" and "Refresh" buttons
             val btnAdd = createchecklistsfrag?.findViewById<Button>(R.id.btnAdd)
             val btnRefresh = createchecklistsfrag?.findViewById<Button>(R.id.btnRefresh)
+            val btnView = createchecklistsfrag?.findViewById<Button>(R.id.btnView)
 
             btnAdd?.setOnClickListener {
                 // Handle the "Add" button click here
@@ -105,6 +107,11 @@ class Createchecklistsfrag : Fragment() {
             btnRefresh?.setOnClickListener {
                 // Handle the "Refresh" button click here
                 btnRefreshClick()
+            }
+
+            btnView?.setOnClickListener {
+                val intent = Intent(requireActivity(), BirdListAdapter::class.java)
+                startActivity(intent)
             }
         }
 

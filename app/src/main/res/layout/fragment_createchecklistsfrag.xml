@@ -115,6 +115,19 @@
         app:layout_constraintTop_toBottomOf="@+id/editTextText3" />
 
     <Button
+        android:id="@+id/btnView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="350dp"
+        android:backgroundTint="@color/light_blue"
+        android:text="View"
+        app:cornerRadius="20dp"
+        android:onClick="btnView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextText3" />
+
+    <Button
         android:id="@+id/btnAdd"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

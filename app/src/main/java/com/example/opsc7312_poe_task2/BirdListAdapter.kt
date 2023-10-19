@@ -1,6 +1,8 @@
 package com.example.opsc7312_poe_task2
 
 
+import android.content.Context
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -8,7 +10,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 
-class BirdListAdapter(private val birdItems: List<BirdItem>) :
+class BirdListAdapter(private val birdItems: List<BirdItem>, private val context: Context) :
     RecyclerView.Adapter<BirdListAdapter.BirdViewHolder>() {
 
     class BirdViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
