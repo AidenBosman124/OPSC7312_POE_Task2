@@ -57,6 +57,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnInfoWi
     private var mPolyLinesData: ArrayList<PolylineData> = ArrayList()
     private var mSelectedMarker: Marker? = null
     private var mTripMarkers: ArrayList<Marker> = ArrayList()
+    private val API_KEY ="AIzaSyBtY6H9DrcG7C77YjH5oLOk4vF-M4wrSdI"
 
     private val eBird_BASE_URL = "https://api.ebird.org/v2/"
     private var selectedUnits: Boolean = false
@@ -108,13 +109,11 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnInfoWi
         val customInfoWindowAdapter = CustomInfoWindowAdapter(this)
         mMap.setInfoWindowAdapter(customInfoWindowAdapter)
 
-        // Enable the My Location layer on the map
-        if (ActivityCompat.checkSelfPermission(
-                this,
-                Manifest.permission.ACCESS_FINE_LOCATION
-            ) == PackageManager.PERMISSION_GRANTED
-        )
-        //enableMyLocation()
+        if (mGeoApiContext == null){
+            mGeoApiContext = GeoApiContext.Builder()
+                .apiKey(API_KEY)
+                .build()
+        }
         mMap.setOnInfoWindowClickListener(this)
         mMap.setOnPolylineClickListener(this)
         getDeviceLocation()
@@ -151,7 +150,6 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnInfoWi
             }
         }
 
-    //function to get nearby hotspots and store them in a List. Uses retrofit and eBird API
     private fun getHotspots(){
         Log.d(ContentValues.TAG, "getHotspots: Called GETHOTSPOTS")
         Log.d(ContentValues.TAG, "mCurrentLocation latidude ${mCurrentLocation.latitude}")
@@ -198,7 +196,6 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnInfoWi
         })
     }
 
-    //function to enable live location updates and retrieve the user's current location
     private fun getDeviceLocation() {
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             return
@@ -235,7 +232,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnInfoWi
     }
 
 
-    fun fetchBirdingHotspots(latitude: Double, longitude: Double) {
+    private fun fetchBirdingHotspots(latitude: Double, longitude: Double) {
         val eBirdAPIUrl = "https://api.ebird.org/v2/ref/geo/loc/recent"
 
         val requestQueue = Volley.newRequestQueue(this)
