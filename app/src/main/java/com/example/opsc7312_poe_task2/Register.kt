@@ -31,7 +31,7 @@ class Register : AppCompatActivity() {
 
                 if (result.first) {
                     trySignUp.RegisterUser(username.text.toString(), password.text.toString())
-                    startActivity(Intent(this@Register, MainPage::class.java))
+                    startActivity(Intent(this@Register, Login::class.java))
                 } else {
                     displayPasswordError(result.second)
                 }
