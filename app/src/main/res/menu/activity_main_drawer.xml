@@ -18,9 +18,6 @@
             android:id="@+id/nav_createchecklist"
             android:title="Create Checklist"/>
         <item
-            android:id="@+id/nav_checklist"
-            android:title="View Checklist"/>
-        <item
             android:id="@+id/nav_hotspots"
             android:title="Nearby Hotspots"/>
     </group>
