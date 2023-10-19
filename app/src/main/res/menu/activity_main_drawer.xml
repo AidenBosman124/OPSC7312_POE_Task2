@@ -18,7 +18,8 @@
             android:id="@+id/nav_createchecklist"
             android:title="Create Checklist"/>
         <item
+            android:icon="@drawable/baseline_map_24"
             android:id="@+id/nav_hotspots"
-            android:title="Nearby Hotspots"/>
+            android:title="Maps"/>
     </group>
 </menu>
