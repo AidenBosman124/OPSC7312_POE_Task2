@@ -2,6 +2,7 @@ package com.example.opsc7312_poe_task2
 
 import android.content.Intent
 import android.os.Bundle
+import android.view.View
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
@@ -15,9 +16,13 @@ class Register : AppCompatActivity() {
         val Registerbtn = findViewById<Button>(R.id.btn_signup)
         val Backbtn = findViewById<Button>(R.id.btnBack)
 
-        Registerbtn.setOnClickListener() {
-            register()
-        }
+        Registerbtn.setOnClickListener(object : View.OnClickListener {
+            override fun onClick(v: View) {
+                // Your code to execute when the button is clicked, for example:
+                register()
+            }
+        })
+
         Backbtn.setOnClickListener() {
             startActivity(Intent(this@Register, Login::class.java))
         }

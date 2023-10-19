@@ -19,14 +19,14 @@ class MainPage : AppCompatActivity() {
     private val createchecklistsfrag = Createchecklistsfrag()
     private val nearbyfrag = Nearbyfrag()
 
-    val btnMap = findViewById<Button>(R.id.btnMap)
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main_page)
 
         switchFragment(setFragment)
-
+        val btnMap = findViewById<Button>(R.id.btnMap)
         drawerLayout = findViewById(R.id.drawer_layout)
         navigationView = findViewById(R.id.navigation_view)
         val toggleButton: ImageButton = findViewById(R.id.toggle_button)

@@ -21,7 +21,8 @@ class Login : AppCompatActivity()
 
     LogInbtn.setOnClickListener()
     {
-        logIn()
+        //logIn()
+        startActivity(Intent(this@Login, MainPage::class.java))
     }
     Backbtn.setOnClickListener()
     {
