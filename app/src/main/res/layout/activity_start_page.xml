@@ -41,7 +41,7 @@
             android:background="@drawable/custom_edittext"
             android:text="Eagle Eye: \n A Birds Eye View"
             android:textAlignment="center"
-            android:textColor="#00008B"
+            android:textColor="@color/light_blue"
             android:textSize="35sp"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
