@@ -20,8 +20,8 @@
 
     <Button
         android:id="@+id/btnnearbyenter"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         android:layout_marginTop="11dp"
         app:cornerRadius="20dp"
         android:text="Enter"
@@ -77,10 +77,10 @@
 
     <com.google.android.gms.maps.MapView
         android:id="@+id/map"
-        android:layout_width="412dp"
-        android:layout_height="363dp"
-        android:layout_marginTop="366dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         app:layout_constraintEnd_toStartOf="@+id/txtRegPassword"
+        app:layout_constraintHorizontal_bias="0.501"
         app:layout_constraintStart_toStartOf="@+id/txtRegPassword"
         app:layout_constraintTop_toTopOf="parent" />
 
