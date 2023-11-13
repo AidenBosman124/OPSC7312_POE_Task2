@@ -1,3 +1,4 @@
+package com.example.opsc7312_poe_task2
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -6,57 +7,61 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.opsc7312_poe_task2.BirdItem
-import com.example.opsc7312_poe_task2.R
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.Query
 
 class Birdsfrag : Fragment() {
 
     private lateinit var recyclerView: RecyclerView
     private lateinit var adapter: BirdListAdapter
+    private val birdItems = mutableListOf<BirdItem>()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         val birdsfrag = inflater.inflate(R.layout.fragment_birdsfrag, container, false)
-
         recyclerView = birdsfrag.findViewById(R.id.recyclerView)
 
-        // Initialize your list of bird items
-        val birdItems = mutableListOf<BirdItem>()
-
-        // Fetch data from Firebase and update the list
-        fetchDataFromFirebase(birdItems)
-
-        // Set up a RecyclerView adapter
-        adapter = BirdListAdapter(birdItems, requireContext())
-        recyclerView.adapter = adapter
+        // Set up RecyclerView
         recyclerView.layoutManager = LinearLayoutManager(context)
+        adapter = BirdListAdapter(birdItems, requireContext()) // Provide the required Context
+        recyclerView.adapter = adapter
+
+        // Fetch data from Firebase
+        fetchBirdDataFromFirebase()
 
         return birdsfrag
     }
 
-    private fun fetchDataFromFirebase(birdItems: MutableList<BirdItem>) {
-        // TODO: Use your Firebase Firestore instance and query to fetch bird data
-        val db = FirebaseFirestore.getInstance()
-        db.collection("birds")
-            .get()
-            .addOnSuccessListener { result ->
-                for (document in result) {
-                    // Parse the data from the document and add it to the birdItems list
-                    val birdName = document.getString("name") ?: "Bird 1"
-                    val sightingDate = document.getString("date") ?: "2023-10-20"
-                    val sightingLocation = document.getString("location") ?: "Location 1"
+    private fun fetchBirdDataFromFirebase() {
+        // Assuming you have a Firebase Firestore collection named "birds"
+        val firestore = FirebaseFirestore.getInstance()
+        val birdsCollection = firestore.collection("birds")
 
-                    birdItems.add(BirdItem(R.mipmap.ic_launcher_round, birdName, sightingDate, sightingLocation))
-                }
+        // Query to retrieve data (modify as needed)
+        val query: Query = birdsCollection.limit(10) // Limit to 10 items for example
 
-                // Notify the adapter that the data has changed
-                adapter.notifyDataSetChanged()
+        query.get().addOnSuccessListener { snapshot ->
+            birdItems.clear() // Clear previous data
+            for (document in snapshot.documents) {
+                // Parse data from the document and create BirdItem objects
+                val imageResource =
+                    (document.get("imageResource") as? Long)?.toInt() ?: R.mipmap.ic_launcher_round
+                val birdItem = BirdItem(
+                    imageResource,
+                    document.getString("birdName") ?: "Bird 1",
+                    document.getString("sightingDate") ?: "2023-10-20",
+                    document.getString("sightingLocation") ?: "Location 1"
+                )
+                birdItems.add(birdItem)
             }
-            .addOnFailureListener { exception ->
-                // Handle failures
-            }
+
+            // Notify adapter that data has changed
+            adapter.notifyDataSetChanged()
+        }.addOnFailureListener { exception ->
+            // Handle failure
+            // You might want to log the exception or show an error message
+        }
     }
 }
