@@ -85,6 +85,22 @@
         app:layout_constraintStart_toEndOf="@+id/btnkilometres"
         app:layout_constraintTop_toBottomOf="@+id/textView33" />
 
+
+    <Button
+        android:id="@+id/btnSetAndSend"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:backgroundTint="@color/light_blue"
+        android:text="Set and Send to Firebase"
+        app:cornerRadius="20dp"
+        app:layout_constraintBottom_toTopOf="@+id/textView34"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.418"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtmaxdistance"
+        app:layout_constraintVertical_bias="0.0" />
+
     <TextView
         android:id="@+id/textView34"
         android:layout_width="wrap_content"
