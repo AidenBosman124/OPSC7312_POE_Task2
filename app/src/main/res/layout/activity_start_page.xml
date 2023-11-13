@@ -43,14 +43,19 @@
             android:id="@+id/textView"
             android:layout_width="wrap_content"
             android:layout_height="96dp"
-            android:text="Eagle Eye:                              A Birds Eye View"
+            android:text="Eagle Eye: A Birds Eye View"
             android:textAlignment="center"
-            android:textColor="#000000"
+            android:textColor="#800080"
             android:textSize="35sp"
+            android:shadowColor="#000000"
+            android:shadowDx="0"
+            android:shadowDy="0"
+            android:shadowRadius="5"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
+
 
         <Button
             android:id="@+id/LogInbtn"
