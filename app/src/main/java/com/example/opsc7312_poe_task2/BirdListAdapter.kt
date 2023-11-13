@@ -1,16 +1,15 @@
 package com.example.opsc7312_poe_task2
 
-
 import android.content.Context
-import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 
-class BirdListAdapter(private val birdItems: List<BirdItem>) :
+class BirdListAdapter(private val birdItems: List<BirdItem>, private val context: Context) :
     RecyclerView.Adapter<BirdListAdapter.BirdViewHolder>() {
 
     class BirdViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
@@ -28,10 +27,14 @@ class BirdListAdapter(private val birdItems: List<BirdItem>) :
 
     override fun onBindViewHolder(holder: BirdViewHolder, position: Int) {
         val currentItem = birdItems[position]
-        holder.birdImage.setImageResource(currentItem.imageResource)
         holder.birdName.text = currentItem.name
         holder.birdDate.text = currentItem.date
         holder.birdLocation.text = currentItem.location
+
+        // Load image using Glide library
+        Glide.with(context)
+            .load(currentItem.imageResource)
+            .into(holder.birdImage)
     }
 
     override fun getItemCount(): Int {
