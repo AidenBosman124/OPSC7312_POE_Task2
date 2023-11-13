@@ -38,4 +38,5 @@
     <string name="Error">Error</string>
     <string name="signUpScreenValue">Sign_Up</string>
     <string name="LoadSignUp">LoadSignUp</string>
+    <string name="saved_dist_key" />
 </resources>
