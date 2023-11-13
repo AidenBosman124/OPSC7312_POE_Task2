@@ -4,7 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/bkgimg"
     android:orientation="vertical"
+
     tools:context=".StartPage">
 
     <androidx.cardview.widget.CardView
@@ -12,6 +14,7 @@
         android:layout_height="1500dp"
         android:layout_margin="1dp"
         app:cardCornerRadius="30dp"
+        android:background="@drawable/bkgimg"
         app:cardElevation="20dp">
 
     <ImageView
@@ -22,7 +25,9 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="@drawable/bkgimg"
+        >
 
         <ImageView
             android:id="@+id/iconimg"
