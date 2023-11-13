@@ -30,23 +30,23 @@
             <TextView
                 android:id="@+id/birdName"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Name"
-                android:layout_weight="1" />
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:text="Name" />
 
             <TextView
                 android:id="@+id/birdDate"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Date"
-                android:layout_weight="1" />
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:text="Date" />
 
             <TextView
                 android:id="@+id/birdLocation"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Location"
-                android:layout_weight="1" />
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:text="Location" />
 
         </LinearLayout>
     </LinearLayout>
