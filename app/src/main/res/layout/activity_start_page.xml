@@ -29,39 +29,39 @@
         android:background="@drawable/bkgimg"
         >
 
-        <ImageView
-            android:id="@+id/iconimg"
-            android:layout_width="218dp"
-            android:layout_height="198dp"
-            android:layout_marginBottom="16dp"
-            android:src="@mipmap/ic_launcher_round"
-            app:layout_constraintBottom_toTopOf="@+id/textView"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
 
         <TextView
             android:id="@+id/textView"
-            android:layout_width="wrap_content"
+            android:layout_width="300dp"
             android:layout_height="96dp"
-            android:text="Eagle Eye:                              A Birds Eye View"
+            android:shadowDx="0"
+            android:shadowDy="0"
+            android:shadowRadius="5"
+            android:backgroundTint="@color/white"
+            android:background="@drawable/custom_edittext"
+            android:text="Eagle Eye: \n A Birds Eye View"
             android:textAlignment="center"
-            android:textColor="#000000"
+            android:textColor="@color/light_blue"
             android:textSize="35sp"
+            android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.496"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.162" />
 
         <Button
             android:id="@+id/LogInbtn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="60dp"
+            android:layout_marginTop="324dp"
             android:backgroundTint="@color/light_blue"
             android:text="Log In"
-            app:cornerRadius="20dp"
             android:textSize="34sp"
+            app:cornerRadius="20dp"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.498"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView" />
 
