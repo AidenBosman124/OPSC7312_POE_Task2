@@ -63,7 +63,7 @@
         android:background="@drawable/custom_edittext"
         android:ems="10"
         android:hint="Full Name"
-        android:drawableLeft="@drawable/baseline_abc_24"
+        android:drawableLeft="@drawable/baseline_edit_24"
         android:inputType="textPersonName"
         android:padding="10dp"
         android:textColor="@color/light_blue"
