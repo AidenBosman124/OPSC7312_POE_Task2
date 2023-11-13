@@ -8,12 +8,16 @@ import android.widget.Button
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.preference.PreferenceManager.getDefaultSharedPreferences
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.FirebaseDatabase
 
 class Settingsfrag : Fragment() {
 
     private lateinit var btnKilometres: Button
     private lateinit var btnMiles: Button
     private lateinit var txtMaxDistance: TextView
+
+    private lateinit var databaseReference: DatabaseReference
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -26,16 +30,21 @@ class Settingsfrag : Fragment() {
         btnMiles = fragment_settingsfrag.findViewById(R.id.btnmiles)
         txtMaxDistance = fragment_settingsfrag.findViewById(R.id.txtmaxdistance)
 
+        // Initialize Firebase
+        databaseReference = FirebaseDatabase.getInstance().reference.child("settings")
+
         // Set App to kilometres -> 1 Km = 0.621371 Miles
         btnKilometres.setOnClickListener {
             val measurementKm = 1 * 0.621371
             saveDistancePreference(measurementKm)
+            sendToFirebase(measurementKm)
         }
 
         // Set App to Miles -> 1 Mile = 1.60934 Km
         btnMiles.setOnClickListener {
             val measurementM = 1 * 1.60934
             saveDistancePreference(measurementM)
+            sendToFirebase(measurementM)
         }
 
         // Handle the maximum distance logic here
@@ -51,5 +60,10 @@ class Settingsfrag : Fragment() {
         sharedPrefsEditor.putInt(getString(R.string.saved_dist_key), distance.toInt())
         sharedPrefsEditor.apply()
     }
-}
 
+    private fun sendToFirebase(distance: Double) {
+        // Save the distance to Firebase
+        val distanceMap = mapOf("distance" to distance)
+        databaseReference.setValue(distanceMap)
+    }
+}
