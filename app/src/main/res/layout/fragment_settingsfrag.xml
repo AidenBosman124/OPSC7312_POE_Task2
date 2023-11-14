@@ -35,7 +35,7 @@
         android:background="@drawable/custom_edittext"
         android:backgroundTint="@color/white"
         android:ems="10"
-        android:contentDescription="Enter Maximum Distance"
+        android:hint="Enter Maximum Distance"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
