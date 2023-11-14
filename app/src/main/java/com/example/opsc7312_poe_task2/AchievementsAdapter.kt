@@ -60,7 +60,6 @@ class AchievementsAdapter(private var achievements: List<HelperClass.Achievement
                 imageViewAchievement.setImageResource(imageResource)
                 imageViewAchievement.colorFilter = colorFilter
             }
-
             textViewName.text = achievement.name
             textViewDescription.text = achievement.description
             textViewStatus.text = if (achievement.isUnlocked) "Unlocked" else "Locked"
