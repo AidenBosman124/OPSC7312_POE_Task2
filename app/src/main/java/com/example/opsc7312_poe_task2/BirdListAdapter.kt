@@ -8,11 +8,11 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.firebase.ui.database.FirebaseRecyclerAdapter
-import com.firebase.ui.database.FirebaseRecyclerOptions
+import com.firebase.ui.firestore.FirestoreRecyclerAdapter
+import com.firebase.ui.firestore.FirestoreRecyclerOptions
 
-class BirdListAdapter(options: FirebaseRecyclerOptions<BirdItem>, private val context: Context) :
-    FirebaseRecyclerAdapter<BirdItem, BirdListAdapter.BirdViewHolder>(options) {
+class BirdListAdapter(options: FirestoreRecyclerOptions<BirdItem>, private val context: Context) :
+    FirestoreRecyclerAdapter<BirdItem, BirdListAdapter.BirdViewHolder>(options) {
 
     class BirdViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val birdImage: ImageView = itemView.findViewById(R.id.birdImage)

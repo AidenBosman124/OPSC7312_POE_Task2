@@ -1,3 +1,4 @@
+package com.example.opsc7312_poe_task2
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -6,18 +7,17 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.opsc7312_poe_task2.BirdItem
-import com.example.opsc7312_poe_task2.BirdListAdapter
-import com.example.opsc7312_poe_task2.R
-import com.firebase.ui.database.FirebaseRecyclerOptions
+import com.firebase.ui.firestore.FirestoreRecyclerOptions
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.database.DatabaseReference
+import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.Query
 
-public class Birdsfrag : Fragment() {
+class Birdsfrag : Fragment() {
 
     private lateinit var recyclerView: RecyclerView
     private lateinit var adapter: BirdListAdapter
-    private lateinit var database: DatabaseReference
+    private val firestore = FirebaseFirestore.getInstance()
+    private val fAuth = FirebaseAuth.getInstance()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -29,11 +29,14 @@ public class Birdsfrag : Fragment() {
         // Set up RecyclerView
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
 
-        // Initialize the adapter with FirebaseRecyclerOptions
-        val options = FirebaseRecyclerOptions.Builder<BirdItem>()
-            .setQuery(database.child("users").child(FirebaseAuth.getInstance().currentUser?.uid ?: "").child("birds"), BirdItem::class.java)
+        // Initialize the adapter with FirestoreRecyclerOptions
+        val query: Query = firestore.collection("users").document(fAuth.currentUser?.uid ?: "")
+            .collection("birds")
+        val options = FirestoreRecyclerOptions.Builder<BirdItem>()
+            .setQuery(query, BirdItem::class.java)
             .build()
 
+        // Use FirestoreRecyclerOptions instead of FirebaseRecyclerOptions
         adapter = BirdListAdapter(options, requireContext())
         recyclerView.adapter = adapter
 

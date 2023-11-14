@@ -1,6 +1,6 @@
 package com.example.opsc7312_poe_task2
 
-import Birdsfrag
+
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
