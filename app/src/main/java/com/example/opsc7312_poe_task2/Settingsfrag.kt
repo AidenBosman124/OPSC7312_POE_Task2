@@ -48,7 +48,7 @@ class Settingsfrag : Fragment() {
         // Set App to kilometres -> 1 Km = 0.621371 Miles
         btnKilometres.setOnClickListener {
             val maxdistance = txtMaxDistance.text.toString().toInt()
-            val measurementKm = maxdistance * 0.621371
+            val measurementKm = maxdistance * 1.00
             saveDistancePreference(measurementKm)
             sendToFirebase(measurementKm)
             txtMaxDistance.text.clear()
