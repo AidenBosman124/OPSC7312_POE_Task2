@@ -206,6 +206,28 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnInfoWi
                 Log.d(ContentValues.TAG, "onFailure: $t")
             }
         })
+
+        val firestore = FirebaseFirestore.getInstance()
+        val birdObservationsCollection = firestore.collection("Observations")
+        birdObservationsCollection.get()
+            .addOnSuccessListener { documents ->
+                for (document in documents) {
+                    val latitude = document.getDouble("latitude") ?: 0.0
+                    val longitude = document.getDouble("longitude") ?: 0.0
+                    val observationName = document.getString("name") ?: ""
+                    val date  = document.getString("date") ?: ""
+
+                    val observationLocation = LatLng(latitude, longitude)
+                    val observationMarkerOptions = MarkerOptions()
+                        .position(observationLocation)
+                        .title(observationName)
+                    // Add other details as needed
+                    mMap.addMarker(observationMarkerOptions)
+                }
+            }
+            .addOnFailureListener { exception ->
+                Log.d(ContentValues.TAG, "Error getting documents: ", exception)
+            }
     }
 
     private fun getDeviceLocation() {
