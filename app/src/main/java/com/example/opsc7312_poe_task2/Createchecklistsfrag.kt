@@ -244,9 +244,7 @@ class Createchecklistsfrag : Fragment() {
         val message = "Saved!\nName: $name\nDate: $date\nLongitude: $longitude\nLatitude: $latitude"
         Toast.makeText(requireContext(), message, Toast.LENGTH_SHORT).show()
 
-        // You can save the data to a database or perform other actions here.
-        // For example:
-        // YourDatabaseClass.saveEntry(name, location, date)
+        // Database Save
         val fAuth = FirebaseAuth.getInstance()
         val firestore = FirebaseFirestore.getInstance()
         val user = fAuth.currentUser
