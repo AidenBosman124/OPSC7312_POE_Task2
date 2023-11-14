@@ -33,6 +33,10 @@ import com.google.android.gms.maps.model.Marker
 import com.google.android.gms.maps.model.MarkerOptions
 import com.google.android.gms.maps.model.Polyline
 import com.google.android.gms.maps.model.PolylineOptions
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ValueEventListener
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.maps.DirectionsApiRequest
 import com.google.maps.GeoApiContext
@@ -71,6 +75,8 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnInfoWi
     private var selectedUnits: Boolean = false
     private var selectedDistance: Int = 20
 
+    var db = FirebaseFirestore.getInstance()
+    var arMarkers = arrayListOf<Observations>()
 
     private lateinit var mapHandler: MapsActivity
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -128,6 +134,20 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnInfoWi
         mMap.setOnPolylineClickListener(this)
         getDeviceLocation()
 
+        db.collection("Observations").addSnapshotListener {
+            result, e ->
+            if(e != null)
+            {
+
+            }
+            arMarkers.addAll(result!!.toObjects(Observations::class.java))
+
+            for(observation in arMarkers){
+                val birdObservation = LatLng(observation.latitude,observation.longitude)
+                mMap.addMarker(MarkerOptions().position(birdObservation).title(observation.name))
+            }
+
+        }
 
     }
 
@@ -207,27 +227,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnInfoWi
             }
         })
 
-        val firestore = FirebaseFirestore.getInstance()
-        val birdObservationsCollection = firestore.collection("Observations")
-        birdObservationsCollection.get()
-            .addOnSuccessListener { documents ->
-                for (document in documents) {
-                    val latitude = document.getDouble("latitude") ?: 0.0
-                    val longitude = document.getDouble("longitude") ?: 0.0
-                    val observationName = document.getString("name") ?: ""
-                    val date  = document.getString("date") ?: ""
 
-                    val observationLocation = LatLng(latitude, longitude)
-                    val observationMarkerOptions = MarkerOptions()
-                        .position(observationLocation)
-                        .title(observationName)
-                    // Add other details as needed
-                    mMap.addMarker(observationMarkerOptions)
-                }
-            }
-            .addOnFailureListener { exception ->
-                Log.d(ContentValues.TAG, "Error getting documents: ", exception)
-            }
     }
 
     private fun getDeviceLocation() {
@@ -264,7 +264,6 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnInfoWi
         currentLocationCallback = locationCallback
         mFusedLocationClient.requestLocationUpdates(locationRequest, locationCallback, Looper.getMainLooper())
     }
-
 
     private fun fetchBirdingHotspots(latitude: Double, longitude: Double) {
         val eBirdAPIUrl = "https://api.ebird.org/v2/ref/geo/loc/recent"
