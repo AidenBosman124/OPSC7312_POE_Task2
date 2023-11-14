@@ -13,6 +13,7 @@ import com.google.android.material.navigation.NavigationView
 class MainPage : AppCompatActivity() {
     private lateinit var drawerLayout: DrawerLayout
     private lateinit var navigationView: NavigationView
+    private val achievements = HomeFragment()
     private val setFragment = Settingsfrag()
     private val birdsfrag = Birdsfrag()
     private val createchecklistsfrag = Createchecklistsfrag()
@@ -42,7 +43,7 @@ class MainPage : AppCompatActivity() {
         navigationView.setNavigationItemSelectedListener { menuItem ->
             when (menuItem.itemId) {
                 R.id.nav_achievements -> {
-                    switchFragment(setFragment)
+                    switchFragment(achievements)
                     drawerLayout.closeDrawer(GravityCompat.START)
                     true
                 }
