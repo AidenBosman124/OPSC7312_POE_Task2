@@ -51,7 +51,7 @@
         android:id="@+id/editTextText4"
         android:layout_width="wrap_content"
         android:layout_height="35dp"
-        android:layout_marginTop="26dp"
+        android:layout_marginTop="80dp"
         android:layout_marginEnd="14dp"
         android:ems="10"
         android:backgroundTint="@color/white"
@@ -59,7 +59,7 @@
         android:inputType="text"
         android:hint="Date"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextText3" />
+        app:layout_constraintTop_toBottomOf="@+id/editTextText2" />
 
     <!-- Sighting Date Label -->
     <TextView
@@ -86,19 +86,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textView30" />
 
     <!-- Location Input Field -->
-    <EditText
-        android:id="@+id/editTextText3"
-        android:layout_width="wrap_content"
-        android:layout_height="35dp"
-        android:layout_marginTop="22dp"
-        android:layout_marginEnd="14dp"
-        android:ems="10"
-        android:backgroundTint="@color/white"
-        android:background="@drawable/custom_edittext"
-        android:inputType="text"
-        android:hint="Location"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextText2" />
+
 
     <!-- Create Button -->
     <Button
@@ -112,7 +100,7 @@
         android:onClick="button4"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextText3" />
+        app:layout_constraintTop_toBottomOf="@+id/editTextText4" />
 
     <Button
         android:id="@+id/btnView"
@@ -125,7 +113,7 @@
         android:onClick="btnView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextText3" />
+        app:layout_constraintTop_toBottomOf="@+id/editTextText4" />
 
     <Button
         android:id="@+id/btnAdd"
@@ -165,5 +153,31 @@
         app:layout_constraintBottom_toTopOf="@+id/editTextText2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/textView_longitude"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Longitude"
+        android:background="@color/white"
+        android:layout_marginTop="15dp"
+        android:layout_marginEnd="160dp"
+        tools:layout_editor_absoluteX="190dp"
+        tools:layout_editor_absoluteY="162dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextText2"/>
+
+    <TextView
+        android:id="@+id/textView_latitude"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Latitude"
+        android:background="@color/white"
+        android:layout_marginTop="15dp"
+        android:layout_marginEnd="172dp"
+        tools:layout_editor_absoluteX="188dp"
+        tools:layout_editor_absoluteY="193dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView_longitude"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -9,7 +9,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
-import android.widget.EditText
 import android.widget.Toast
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
@@ -18,7 +17,10 @@ import com.example.opsc7312_poe_task2.databinding.FragmentCreatechecklistsfragBi
 import android.location.Location
 import android.location.LocationListener
 import android.location.LocationManager
-import java.text.SimpleDateFormat
+import android.provider.Settings
+import android.widget.TextView
+import com.google.android.gms.location.FusedLocationProviderClient
+import com.google.android.gms.location.LocationServices
 import java.util.*
 
 class Createchecklistsfrag : Fragment() {
@@ -26,6 +28,12 @@ class Createchecklistsfrag : Fragment() {
     private var currentLocation: Location? = null
     private var locationManager: LocationManager? = null
     private val locationPermissionCode = 123
+    private lateinit var fusedLocationProviderClient: FusedLocationProviderClient
+    private lateinit var textView_longitude: TextView
+    private lateinit var textView_latitude: TextView
+
+
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -33,6 +41,12 @@ class Createchecklistsfrag : Fragment() {
     ): View? {
         binding = FragmentCreatechecklistsfragBinding.inflate(inflater, container, false)
         val createchecklistsfrag = binding?.root
+
+        fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(requireActivity())
+        textView_longitude= binding?.textViewLongitude!!
+        textView_latitude= binding?.textViewLatitude!!
+
+        getCurrentLocation();
 
         locationManager = requireActivity().getSystemService(Context.LOCATION_SERVICE) as LocationManager
 
@@ -80,18 +94,23 @@ class Createchecklistsfrag : Fragment() {
             button4?.setOnClickListener {
                 val name = binding?.editTextText2?.text.toString()
                 val date = binding?.editTextText4?.text.toString()
-                val location = binding?.editTextText3?.text.toString()
+                val longitude = currentLocation?.longitude ?:0.0
+                val latitude = currentLocation?.latitude ?:0.0
+
+                // Display latitude and longitude in TextViews
+                textView_latitude.text = "Latitude: $latitude"
+                textView_longitude.text = "Longitude: $longitude"
 
                 // Handle your button click here
                 // You can use the name, date, and location as needed.
                 // For example, you can display the values in a toast message:
-                val message = "Name: $name\nDate: $date\nLocation: $location\nCurrent Location: Lat: ${
+                val message = "Name: $name\nDate: $date\nLongitude: $longitude\nLatitude: $latitude ${
                     currentLocation?.latitude ?: 0.0
                 }, Long: ${currentLocation?.longitude ?: 0.0}"
                 Toast.makeText(requireContext(), message, Toast.LENGTH_SHORT).show()
 
                 // Call the saveEntry function with the provided data
-                saveEntry(name, location, date)
+                saveEntry(name, longitude, latitude, date)
             }
 
             // Set click listeners for the "Add" and "Refresh" buttons
@@ -118,16 +137,107 @@ class Createchecklistsfrag : Fragment() {
         return createchecklistsfrag
     }
 
+    private fun getCurrentLocation() {
+        if (checkPermissions()) {
+            if (isLocationEnabled()) {
+                if (ActivityCompat.checkSelfPermission(
+                        requireContext(),
+                        Manifest.permission.ACCESS_FINE_LOCATION
+                    ) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(
+                        requireContext(),
+                        Manifest.permission.ACCESS_COARSE_LOCATION
+                    ) != PackageManager.PERMISSION_GRANTED
+                ) {
+                    // TODO: Consider calling
+                    //    ActivityCompat#requestPermissions
+                    // here to request the missing permissions, and then overriding
+                    //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+                    //                                          int[] grantResults)
+                    // to handle the case where the user grants the permission. See the documentation
+                    // for ActivityCompat#requestPermissions for more details.
+                    return
+                }
+                fusedLocationProviderClient.lastLocation.addOnCompleteListener(requireActivity()) { task ->
+                    val location: Location? = task.result
+                    if (location == null)
+                    {
+                        Toast.makeText(requireContext(), "Null Recieved", Toast.LENGTH_SHORT).show()
+                    }
+                    else
+                    {
+                        Toast.makeText(requireContext(), "Successfully Retrieved", Toast.LENGTH_SHORT).show()
+                        textView_longitude.text=""+location.longitude
+                        textView_latitude.text=""+location.latitude
+                    }
+                }
+            }
+                else
+                {
+                    Toast.makeText(requireContext(), "Turn on Location", Toast.LENGTH_SHORT).show()
+                    val intent = Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS)
+                    startActivity(intent)
+                }
+
+            } else {
+                requestPermission()
+            }
+        }
+
+
+    private fun isLocationEnabled(): Boolean{
+        val locationManager:LocationManager=requireContext().getSystemService(Context.LOCATION_SERVICE) as LocationManager
+        return locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)||locationManager.isProviderEnabled(
+            LocationManager.NETWORK_PROVIDER
+        )
+    }
+
+    private fun requestPermission() {
+        ActivityCompat.requestPermissions(requireActivity(), arrayOf(android.Manifest.permission.ACCESS_COARSE_LOCATION,
+        android.Manifest.permission.ACCESS_FINE_LOCATION), PERMISSION_REQUEST_ACCESS_LOCATION)
+    }
+
+
+
+
+    private fun checkPermissions():Boolean{
+        if(ActivityCompat.checkSelfPermission(requireContext(),android.Manifest.permission.ACCESS_COARSE_LOCATION)
+        ==PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(requireContext(),
+            android.Manifest.permission.ACCESS_FINE_LOCATION)==PackageManager.PERMISSION_GRANTED)
+        {
+            return true
+        }
+
+        return false
+    }
+    override fun onRequestPermissionsResult(
+        requestCode: Int,
+        permissions: Array<out String>,
+        grantResults: IntArray
+    ) {
+        if(requestCode== PERMISSION_REQUEST_ACCESS_LOCATION)
+        {
+            if(grantResults.isNotEmpty() && grantResults[0]==PackageManager.PERMISSION_GRANTED)
+            {
+                Toast.makeText(requireContext(), "Granted", Toast.LENGTH_SHORT).show()
+                getCurrentLocation()
+            }
+            else
+            {
+                Toast.makeText(requireContext(), "Denied", Toast.LENGTH_SHORT).show()
+            }
+        }
+    }
+
     override fun onDestroyView() {
         super.onDestroyView()
         binding = null
     }
 
-    private fun saveEntry(name: String, location: String, date: String) {
+    private fun saveEntry(name: String, longitude: Double, latitude: Double, date: String) {
         // Implement your logic to save the entry here
         // This is where you can save the data to a database or perform other actions.
         // For example, you can display a toast message:
-        val message = "Saved!\nName: $name\nDate: $date\nLocation: $location"
+        val message = "Saved!\nName: $name\nDate: $date\nLongitude: $longitude\nLatitude: $latitude"
         Toast.makeText(requireContext(), message, Toast.LENGTH_SHORT).show()
 
         // You can save the data to a database or perform other actions here.
@@ -138,10 +248,11 @@ class Createchecklistsfrag : Fragment() {
     private fun btnAddClick() {
         val name = binding?.editTextText2?.text.toString()
         val date = binding?.editTextText4?.text.toString()
-        val location = binding?.editTextText3?.text.toString()
+        val longitude = currentLocation?.longitude ?:0.0
+        val latitude = currentLocation?.latitude ?:0.0
 
         // Check if any of the fields are empty
-        if (name.isBlank() || date.isBlank() || location.isBlank()) {
+        if (name.isBlank() || date.isBlank()) {
             Toast.makeText(requireContext(), "Please fill in all fields", Toast.LENGTH_SHORT).show()
             return
         }
@@ -150,13 +261,13 @@ class Createchecklistsfrag : Fragment() {
         // For example, you can add the checklist/observation to a list or database.
 
         // Here's a sample action:
-        val newEntry = "Name: $name, Date: $date, Location: $location"
+        val newEntry = "Name: $name, Date: $date, Longitude: $longitude, Latitude: $latitude"
         // Store or display the newEntry as needed
 
         // Clear the input fields
         binding?.editTextText2?.text?.clear()
         binding?.editTextText4?.text?.clear()
-        binding?.editTextText3?.text?.clear()
+
 
         Toast.makeText(requireContext(), "Added: $newEntry", Toast.LENGTH_SHORT).show()
     }
@@ -172,5 +283,8 @@ class Createchecklistsfrag : Fragment() {
 
     companion object {
         private const val locationPermissionCode = 123
+        private const val PERMISSION_REQUEST_ACCESS_LOCATION=100
     }
+
+
 }
