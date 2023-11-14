@@ -1,4 +1,3 @@
-package com.example.opsc7312_poe_task2
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -7,15 +6,18 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.opsc7312_poe_task2.BirdItem
+import com.example.opsc7312_poe_task2.BirdListAdapter
+import com.example.opsc7312_poe_task2.R
+import com.firebase.ui.database.FirebaseRecyclerOptions
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.firestore.FirebaseFirestore
-import com.google.firebase.firestore.Query
+import com.google.firebase.database.DatabaseReference
 
-class Birdsfrag : Fragment() {
+public class Birdsfrag : Fragment() {
 
     private lateinit var recyclerView: RecyclerView
     private lateinit var adapter: BirdListAdapter
-    private val birdItems = mutableListOf<BirdItem>()
+    private lateinit var database: DatabaseReference
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -27,45 +29,24 @@ class Birdsfrag : Fragment() {
         // Set up RecyclerView
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
 
-        // Initialize the adapter before using it
-         recyclerView.adapter = adapter
+        // Initialize the adapter with FirebaseRecyclerOptions
+        val options = FirebaseRecyclerOptions.Builder<BirdItem>()
+            .setQuery(database.child("users").child(FirebaseAuth.getInstance().currentUser?.uid ?: "").child("birds"), BirdItem::class.java)
+            .build()
 
-        // Fetch data from Firebase
-        fetchBirdDataFromFirebase()
+        adapter = BirdListAdapter(options, requireContext())
+        recyclerView.adapter = adapter
 
         return birdsfrag
     }
 
-    private fun fetchBirdDataFromFirebase() {
-        // Assuming you have a Firebase Firestore collection named "birds"
-        val fAuth = FirebaseAuth.getInstance()
-        val firestore = FirebaseFirestore.getInstance()
-        val user = fAuth.currentUser
-        val birdsCollection = firestore.collection("users").document(user!!.uid).collection("birds")
+    override fun onStart() {
+        super.onStart()
+        adapter.startListening()
+    }
 
-        // Query to retrieve data (modify as needed)
-        val query: Query = birdsCollection.limit(10) // Limit to 10 items for example
-
-        query.get().addOnSuccessListener { snapshot ->
-            birdItems.clear() // Clear previous data
-            for (document in snapshot.documents) {
-                // Parse data from the document and create BirdItem objects
-                val imageResource =
-                    (document.get("imageResource") as? Long)?.toInt() ?: R.mipmap.ic_launcher_round
-                val birdItem = BirdItem(
-                    imageResource,
-                    document.getString("birdName") ?: "Bird 1",
-                    document.getString("sightingDate") ?: "2023-10-20",
-                    document.getString("sightingLocation") ?: "Location 1"
-                )
-                birdItems.add(birdItem)
-            }
-
-            // Notify adapter that data has changed
-            adapter.notifyDataSetChanged()
-        }.addOnFailureListener { exception ->
-            // Handle failure
-            // You might want to log the exception or show an error message
-        }
+    override fun onStop() {
+        super.onStop()
+        adapter.stopListening()
     }
 }
