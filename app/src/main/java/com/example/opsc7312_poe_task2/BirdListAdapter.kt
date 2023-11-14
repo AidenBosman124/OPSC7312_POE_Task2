@@ -1,5 +1,4 @@
 package com.example.opsc7312_poe_task2
-
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
@@ -9,8 +8,9 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.firebase.ui.database.FirebaseRecyclerAdapter
+import com.firebase.ui.database.FirebaseRecyclerOptions
 
-class BirdListAdapter(options: MutableList<BirdItem>, private val context: Context) :
+class BirdListAdapter(options: FirebaseRecyclerOptions<BirdItem>, private val context: Context) :
     FirebaseRecyclerAdapter<BirdItem, BirdListAdapter.BirdViewHolder>(options) {
 
     class BirdViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
