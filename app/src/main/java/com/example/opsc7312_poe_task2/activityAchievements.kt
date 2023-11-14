@@ -71,13 +71,13 @@ class activityAchievements : AppCompatActivity(), NavigationView.OnNavigationIte
         navigationView.setCheckedItem(R.id.nav_home)
     }
 
-    private fun achievementFirestore(id: String, status: Boolean) {
+    private fun achievementFirestore() {
         val currentUser = FirebaseAuth.getInstance().currentUser
         val userId = currentUser?.uid
         Log.d("User", "user: $currentUser")
 
         if (userId != null) {
-            val db = FirebaseFirestore.getInstance() // Change this line
+            val db = FirebaseFirestore.getInstance()
 
             for (achievement in HelperClass.AchievementManager.achievementList) {
                 val achievementData = hashMapOf(

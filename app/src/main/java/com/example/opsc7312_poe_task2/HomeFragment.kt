@@ -8,41 +8,31 @@ import android.view.ViewGroup
 import android.widget.Button
 import androidx.fragment.app.Fragment
 
-
 class HomeFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-
-        }
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        val view =  inflater.inflate(R.layout.fragment_home, container, false)
+        val view = inflater.inflate(R.layout.fragment_home, container, false)
 
-        val listButton = view?.findViewById<Button>(R.id.btnList)
-        val mapButton = view?.findViewById<Button>(R.id.btnMap)
-        val achievementButton = view?.findViewById<Button>(R.id.btnAchievements)
+        val listButton = view.findViewById<Button>(R.id.btnList)
+        val mapButton = view.findViewById<Button>(R.id.btnMap)
+        val achievementButton = view.findViewById<Button>(R.id.btnAchievements)
 
-        listButton?.setOnClickListener {
+        listButton.setOnClickListener {
             btnListClick()
         }
 
-        mapButton?.setOnClickListener {
+        mapButton.setOnClickListener {
             btnMapClick()
         }
 
-        achievementButton?.setOnClickListener {
+        achievementButton.setOnClickListener {
             btnAchievementClick()
         }
+
+        checkAchievements() // Check achievements when the fragment is created
 
         return view
     }
@@ -59,14 +49,24 @@ class HomeFragment : Fragment() {
         startActivity(Intent(requireContext(), AchievementsAdapter::class.java))
     }
 
-    companion object {
+    private fun checkAchievements() {
+        val bronzeAchievementCount = 5
+        val silverAchievementCount = 10
+        val goldAchievementCount = 25
 
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            HomeFragment().apply {
-                arguments = Bundle().apply {
-                }
-            }
+        val userAchievementCount = HelperClass.AchievementManager.achievementList.count { it.isUnlocked }
+
+        if (userAchievementCount >= goldAchievementCount) {
+            // User has achieved gold status
+            // You can perform additional actions or show a message here
+        } else if (userAchievementCount >= silverAchievementCount) {
+            // User has achieved silver status
+            // You can perform additional actions or show a message here
+        } else if (userAchievementCount >= bronzeAchievementCount) {
+            // User has achieved bronze status
+            // You can perform additional actions or show a message here
+        } else {
+            // User has not achieved any special status yet
+        }
     }
 }
