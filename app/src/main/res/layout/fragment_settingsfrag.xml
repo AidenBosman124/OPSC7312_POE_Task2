@@ -45,11 +45,11 @@
         android:id="@+id/textView33"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="21dp"
         android:layout_marginBottom="28dp"
-        android:text="Toggle metric system (kilometres)/imperial system (miles)"
         android:background="@color/white"
+        android:text="Toggle metric system (kilometres)/imperial system (miles)"
         app:layout_constraintBottom_toTopOf="@+id/btnmiles"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView7" />
 
@@ -90,11 +90,11 @@
         android:id="@+id/textView34"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="36dp"
         android:layout_marginBottom="35dp"
-        android:text="Maximum distance to travel to a bird watching hotspot"
         android:background="@color/white"
+        android:text="Maximum distance to travel to a bird watching hotspot"
         app:layout_constraintBottom_toTopOf="@+id/txtmaxdistance"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnmiles" />
+        app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>
