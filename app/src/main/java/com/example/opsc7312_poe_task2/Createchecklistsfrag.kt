@@ -4,23 +4,26 @@ import android.Manifest
 import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
+import android.location.Location
+import android.location.LocationListener
+import android.location.LocationManager
 import android.os.Bundle
+import android.provider.Settings
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.TextView
 import android.widget.Toast
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import com.example.opsc7312_poe_task2.databinding.FragmentCreatechecklistsfragBinding
-import android.location.Location
-import android.location.LocationListener
-import android.location.LocationManager
-import android.provider.Settings
-import android.widget.TextView
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.SetOptions
 import java.util.*
 
 class Createchecklistsfrag : Fragment() {
@@ -108,6 +111,7 @@ class Createchecklistsfrag : Fragment() {
                     currentLocation?.latitude ?: 0.0
                 }, Long: ${currentLocation?.longitude ?: 0.0}"
                 Toast.makeText(requireContext(), message, Toast.LENGTH_SHORT).show()
+
 
                 // Call the saveEntry function with the provided data
                 saveEntry(name, longitude, latitude, date)
@@ -243,6 +247,17 @@ class Createchecklistsfrag : Fragment() {
         // You can save the data to a database or perform other actions here.
         // For example:
         // YourDatabaseClass.saveEntry(name, location, date)
+        val fAuth = FirebaseAuth.getInstance()
+        val firestore = FirebaseFirestore.getInstance()
+        val user = fAuth.currentUser
+        val observations = firestore.collection("users").document(user!!.uid).collection("Observations")
+
+        val observationData: MutableMap<String, Any> = HashMap()
+        observationData["name"] = name
+        observationData["date"] = date
+        observationData["longitude"] = longitude
+        observationData["latitude"] = latitude
+        observations.document("yourDocumentId").set(observationData, SetOptions.merge())
     }
 
     private fun btnAddClick() {
