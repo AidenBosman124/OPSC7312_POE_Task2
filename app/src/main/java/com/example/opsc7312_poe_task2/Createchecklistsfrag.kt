@@ -248,14 +248,14 @@ class Createchecklistsfrag : Fragment() {
         val fAuth = FirebaseAuth.getInstance()
         val firestore = FirebaseFirestore.getInstance()
         val user = fAuth.currentUser
-        val observations = firestore.collection("users").document(user!!.uid).collection("Observations")
+        val observations = firestore.collection("users").document(user!!.uid).collection("Observations").document("data")
 
         val observationData: MutableMap<String, Any> = HashMap()
         observationData["name"] = name
         observationData["date"] = date
         observationData["longitude"] = longitude
         observationData["latitude"] = latitude
-        observations.document("data").set(observationData, SetOptions.merge())
+        observations.set(observationData, SetOptions.merge())
     }
 
     private fun btnAddClick() {
