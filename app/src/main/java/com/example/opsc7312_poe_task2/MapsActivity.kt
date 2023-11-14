@@ -134,6 +134,8 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnInfoWi
         mMap.setOnPolylineClickListener(this)
         getDeviceLocation()
 
+        //code adapted on from https://www.youtube.com/watch?v=TY_aYrnNUzs
+        //this is done to show marker for observations
         db.collection("Observations").addSnapshotListener {
             result, e ->
             if(e != null)
@@ -151,6 +153,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnInfoWi
 
     }
 
+    //this is to enable to users location on the map
         private fun enableMyLocation() {
             mMap.isMyLocationEnabled = true
 
@@ -180,6 +183,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnInfoWi
             }
         }
 
+    //this is where the hotspots are generated
     private fun getHotspots(){
         Log.d(ContentValues.TAG, "getHotspots: Called GETHOTSPOTS")
         Log.d(ContentValues.TAG, "mCurrentLocation latidude ${mCurrentLocation.latitude}")
@@ -230,6 +234,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnInfoWi
 
     }
 
+    //get the location of the device to use later
     private fun getDeviceLocation() {
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             return
@@ -265,6 +270,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnInfoWi
         mFusedLocationClient.requestLocationUpdates(locationRequest, locationCallback, Looper.getMainLooper())
     }
 
+    //fetches the hotspots from the ebird api
     private fun fetchBirdingHotspots(latitude: Double, longitude: Double) {
         val eBirdAPIUrl = "https://api.ebird.org/v2/ref/geo/loc/recent"
 
@@ -285,6 +291,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnInfoWi
         requestQueue.add(request)
     }
 
+    //add the navigation lines when you select a location to go to
     private fun addPolylinesToMap(result: DirectionsResult) {
         Handler(Looper.getMainLooper()).post {
             Log.d(ContentValues.TAG, "run: result routes: " + result.routes.size)
@@ -340,6 +347,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnInfoWi
         )
     }
 
+    //calculates the routes to take
     private fun calculateDirections(marker: Marker){
         Log.d(ContentValues.TAG, "calculateDirections: calculating directions.")
 
