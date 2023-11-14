@@ -11,7 +11,6 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.Query
 
-
 class Birdsfrag : Fragment() {
 
     private lateinit var recyclerView: RecyclerView
@@ -25,17 +24,18 @@ class Birdsfrag : Fragment() {
         val birdsfrag = inflater.inflate(R.layout.fragment_birdsfrag, container, false)
         recyclerView = birdsfrag.findViewById(R.id.recyclerView)
 
-
-
         // Set up RecyclerView
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
-        recyclerView.adapter = adapter
+
+        // Initialize the adapter before using it
+         recyclerView.adapter = adapter
 
         // Fetch data from Firebase
         fetchBirdDataFromFirebase()
 
         return birdsfrag
     }
+
     private fun fetchBirdDataFromFirebase() {
         // Assuming you have a Firebase Firestore collection named "birds"
         val fAuth = FirebaseAuth.getInstance()
