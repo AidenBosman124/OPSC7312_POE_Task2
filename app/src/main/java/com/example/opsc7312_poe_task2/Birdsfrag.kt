@@ -7,6 +7,8 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.DocumentReference
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.Query
 
@@ -36,9 +38,12 @@ class Birdsfrag : Fragment() {
 
     private fun fetchBirdDataFromFirebase() {
         // Assuming you have a Firebase Firestore collection named "birds"
+        val fAuth = FirebaseAuth.getInstance()
         val firestore = FirebaseFirestore.getInstance()
-        val birdsCollection = firestore.collection("birds")
-
+        val user = fAuth.getCurrentUser()
+        val birdsCollection = firestore.collection("users").document(
+            user!!.uid
+        ).collection("birds")
         // Query to retrieve data (modify as needed)
         val query: Query = birdsCollection.limit(10) // Limit to 10 items for example
 
