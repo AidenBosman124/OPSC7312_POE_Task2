@@ -25,6 +25,8 @@ class Birdsfrag : Fragment() {
         val birdsfrag = inflater.inflate(R.layout.fragment_birdsfrag, container, false)
         recyclerView = birdsfrag.findViewById(R.id.recyclerView)
 
+
+
         // Set up RecyclerView
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
         recyclerView.adapter = adapter
@@ -34,7 +36,6 @@ class Birdsfrag : Fragment() {
 
         return birdsfrag
     }
-
     private fun fetchBirdDataFromFirebase() {
         // Assuming you have a Firebase Firestore collection named "birds"
         val fAuth = FirebaseAuth.getInstance()
