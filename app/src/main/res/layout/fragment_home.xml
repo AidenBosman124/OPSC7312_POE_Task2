@@ -29,7 +29,7 @@
 
         <Button
             android:id="@+id/btnMap"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="0dp"
             android:background="@drawable/transparent_button_rounded"
             android:text="Map"
@@ -40,7 +40,7 @@
 
         <Button
             android:id="@+id/btnList"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="0dp"
             android:background="@drawable/transparent_button_rounded"
             android:text="List"
