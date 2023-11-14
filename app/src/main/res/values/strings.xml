@@ -39,4 +39,6 @@
     <string name="signUpScreenValue">Sign_Up</string>
     <string name="LoadSignUp">LoadSignUp</string>
     <string name="saved_dist_key" />
+    <string name="close_nav" />
+    <string name="open_nav" />
 </resources>

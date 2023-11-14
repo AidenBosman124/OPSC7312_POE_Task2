@@ -8,9 +8,10 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.firebase.ui.database.FirebaseRecyclerAdapter
 
-class BirdListAdapter(private val birdItems: List<BirdItem>, private val context: Context) :
-    RecyclerView.Adapter<BirdListAdapter.BirdViewHolder>() {
+class BirdListAdapter(options: MutableList<BirdItem>, private val context: Context) :
+    FirebaseRecyclerAdapter<BirdItem, BirdListAdapter.BirdViewHolder>(options) {
 
     class BirdViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val birdImage: ImageView = itemView.findViewById(R.id.birdImage)
@@ -25,19 +26,14 @@ class BirdListAdapter(private val birdItems: List<BirdItem>, private val context
         return BirdViewHolder(itemView)
     }
 
-    override fun onBindViewHolder(holder: BirdViewHolder, position: Int) {
-        val currentItem = birdItems[position]
-        holder.birdName.text = currentItem.name
-        holder.birdDate.text = currentItem.date
-        holder.birdLocation.text = currentItem.location
+    override fun onBindViewHolder(holder: BirdViewHolder, position: Int, model: BirdItem) {
+        holder.birdName.text = model.name
+        holder.birdDate.text = model.date
+        holder.birdLocation.text = model.location
 
         // Load image using Glide library
         Glide.with(context)
-            .load(currentItem.imageResource)
+            .load(model.imageResource)
             .into(holder.birdImage)
-    }
-
-    override fun getItemCount(): Int {
-        return birdItems.size
     }
 }
