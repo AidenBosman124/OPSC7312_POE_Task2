@@ -41,6 +41,11 @@ class MainPage : AppCompatActivity() {
 
         navigationView.setNavigationItemSelectedListener { menuItem ->
             when (menuItem.itemId) {
+                R.id.nav_achievements -> {
+                    switchFragment(setFragment)
+                    drawerLayout.closeDrawer(GravityCompat.START)
+                    true
+                }
                 R.id.nav_settings -> {
                     switchFragment(setFragment)
                     drawerLayout.closeDrawer(GravityCompat.START)

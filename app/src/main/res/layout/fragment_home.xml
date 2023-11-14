@@ -30,7 +30,7 @@
         <Button
             android:id="@+id/btnMap"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="0dp"
             android:background="@drawable/transparent_button_rounded"
             android:text="Map"
             android:textColor="@color/black"
@@ -41,7 +41,7 @@
         <Button
             android:id="@+id/btnList"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="0dp"
             android:background="@drawable/transparent_button_rounded"
             android:text="List"
             android:textColor="@color/black"
