@@ -1,5 +1,6 @@
 package com.example.opsc7312_poe_task2
 
+import BirdItem
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -31,14 +32,11 @@ class Birdsfrag : Fragment() {
 
         // Initialize the adapter with FirestoreRecyclerOptions
         val query: Query = firestore.collection("users").document(fAuth.currentUser?.uid ?: "")
-            .collection("birds")
+            .collection("Observations")
+            .orderBy("date", Query.Direction.DESCENDING)  // You can order by date or any other field
         val options = FirestoreRecyclerOptions.Builder<BirdItem>()
             .setQuery(query, BirdItem::class.java)
             .build()
-        val fAuth = FirebaseAuth.getInstance()
-        val firestore = FirebaseFirestore.getInstance()
-        val user = fAuth.currentUser
-        val observations = firestore.collection("users").document(user!!.uid).collection("Observations")
 
         // Use FirestoreRecyclerOptions instead of FirebaseRecyclerOptions
         adapter = BirdListAdapter(options, requireContext())

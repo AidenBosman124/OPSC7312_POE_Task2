@@ -1,40 +1,33 @@
 package com.example.opsc7312_poe_task2
 
+import BirdItem
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter
 import com.firebase.ui.firestore.FirestoreRecyclerOptions
 
 class BirdListAdapter(options: FirestoreRecyclerOptions<BirdItem>, private val context: Context) :
     FirestoreRecyclerAdapter<BirdItem, BirdListAdapter.BirdViewHolder>(options) {
 
-    class BirdViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val birdImage: ImageView = itemView.findViewById(R.id.birdImage)
-        val birdName: TextView = itemView.findViewById(R.id.birdName)
-        val birdDate: TextView = itemView.findViewById(R.id.birdDate)
-        val birdLocation: TextView = itemView.findViewById(R.id.birdLocation)
+    inner class BirdViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+        val txtName: TextView = itemView.findViewById(R.id.txtName)
+        val txtDate: TextView = itemView.findViewById(R.id.txtDate)
+        val txtLocation: TextView = itemView.findViewById(R.id.txtLocation)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BirdViewHolder {
-        val itemView = LayoutInflater.from(parent.context)
+        val view = LayoutInflater.from(parent.context)
             .inflate(R.layout.bird_list_item, parent, false)
-        return BirdViewHolder(itemView)
+        return BirdViewHolder(view)
     }
 
     override fun onBindViewHolder(holder: BirdViewHolder, position: Int, model: BirdItem) {
-        holder.birdName.text = model.name
-        holder.birdDate.text = model.date
-        holder.birdLocation.text = model.location
-
-        // Load image using Glide library
-        Glide.with(context)
-            .load(model.imageResource)
-            .into(holder.birdImage)
+        holder.txtName.text = model.name
+        holder.txtDate.text = model.date
+        holder.txtLocation.text = "Latitude: ${model.latitude}, Longitude: ${model.longitude}"
     }
 }

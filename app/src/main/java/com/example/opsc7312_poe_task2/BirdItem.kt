@@ -1,4 +1,6 @@
-package com.example.opsc7312_poe_task2
-
-data class BirdItem(val imageResource: Int, val name: String, val date: String, val location: String)
-
+data class BirdItem(
+    val name: String = "",
+    val longitude: Double = 0.0,
+    val latitude: Double = 0.0,
+    val date: String = ""
+)
