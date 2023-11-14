@@ -46,12 +46,6 @@ class Settingsfrag : Fragment() {
             saveDistancePreference(measurementM)
             sendToFirebase(measurementM)
         }
-
-        // Handle the maximum distance logic here
-        txtMaxDistance.setOnClickListener {
-            // You need to handle the logic for maximum distance here
-        }
-
         return fragment_settingsfrag
     }
 
