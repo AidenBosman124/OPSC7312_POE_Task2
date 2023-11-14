@@ -4,26 +4,31 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".HomeFragment">
+    tools:context=".HomeFragment"
+    android:background="@drawable/bkgimg">
 
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:weightSum="5">
+
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:cardCornerRadius="16dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="100dp">
 
         <ImageView
             android:id="@+id/imageView3"
-            android:layout_width="428dp"
-            android:layout_height="100dp"
+            android:layout_width="257dp"
+            android:layout_height="133dp"
+            android:scaleType="centerCrop"
             android:src="@drawable/img" />
 
-        <ImageView
-            android:id="@+id/imageView4"
-            android:layout_width="match_parent"
-            android:layout_height="200dp"
-            android:src="@drawable/img_1" />
+</androidx.cardview.widget.CardView>
+
+
+
+
 
         <Button
             android:id="@+id/btnMap"
@@ -50,14 +55,17 @@
             android:id="@+id/btnAchievements"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginHorizontal="10dp"
+            android:layout_marginTop="480dp"
             android:text="Achievements"
-            android:textColor="@color/black"
-            android:textSize="20sp"
+            android:backgroundTint="@color/light_blue"
+            app:cornerRadius="20dp"
+            android:textSize="34sp"
             app:iconTint="@color/black"
-            android:layout_marginTop="10dp"
-            android:layout_marginHorizontal="10dp"/>
 
-    </LinearLayout>
+            />
+
+
 
 
 </FrameLayout>
