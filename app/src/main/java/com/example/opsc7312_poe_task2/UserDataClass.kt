@@ -3,12 +3,14 @@ package com.example.opsc7312_poe_task2
 import android.annotation.SuppressLint
 import android.content.Context
 
+// Class representing user data and related operations
 class UserDataClass(
     var userID: Int = 0,
     var username: String = "",
     var password: String = ""
 ) {
 
+    // Validate user credentials (username and password)
     fun ValidateUser(userName: String, userPassword: String): Boolean {
         for (user in GlobalsClass.userList) {
             if (userName == user.username && userPassword == user.password) {
@@ -25,6 +27,7 @@ class UserDataClass(
     }
 
     @SuppressLint("SuspiciousIndentation")
+    // Validate user-provided password against specified criteria
     fun ValidateUserPassword(attemptedPassword: String, passwordResources: PasswordResources): Pair<Boolean, String> {
         val validationErrors = ArrayList<String>()
 
@@ -56,6 +59,7 @@ class UserDataClass(
         }
     }
 
+    // Data class to hold resources for password validation messages
     data class PasswordResources(
         val passwordShort: String,
         val passwordNeedsNumber: String,
@@ -65,6 +69,7 @@ class UserDataClass(
         val passwordSpecialCharacters: String
     )
 
+    // Register a new user with the provided username and password
     fun RegisterUser(userUsername: String, userPassword: String) {
         if (GlobalsClass.userList.any { it.username == userUsername }) {
             // User already exists

@@ -1,6 +1,5 @@
 package com.example.opsc7312_poe_task2
 
-
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
@@ -11,6 +10,7 @@ import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.Fragment
 import com.google.android.material.navigation.NavigationView
 
+// Activity representing the main page of the application
 class MainPage : AppCompatActivity() {
     private lateinit var drawerLayout: DrawerLayout
     private lateinit var navigationView: NavigationView
@@ -20,27 +20,29 @@ class MainPage : AppCompatActivity() {
     private val createchecklistsfrag = Createchecklistsfrag()
     private val nearbyfrag = Nearbyfrag()
 
-
-
+    // Function called when the activity is created
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main_page)
+
+        // Initialize UI elements
         val btnMap = findViewById<Button>(R.id.btnMap)
         switchFragment(setFragment)
         drawerLayout = findViewById(R.id.drawer_layout)
         navigationView = findViewById(R.id.navigation_view)
         val toggleButton: ImageButton = findViewById(R.id.toggle_button)
 
-        btnMap.setOnClickListener()
-        {
+        // Button click listener to start the MapsActivity
+        btnMap.setOnClickListener() {
             startActivity(Intent(this@MainPage, MapsActivity::class.java))
-
         }
 
+        // Toggle button click listener to open the navigation drawer
         toggleButton.setOnClickListener {
             drawerLayout.openDrawer(GravityCompat.START)
         }
 
+        // Navigation item click listener to switch fragments based on selected item
         navigationView.setNavigationItemSelectedListener { menuItem ->
             when (menuItem.itemId) {
                 R.id.nav_achievements -> {
@@ -68,12 +70,12 @@ class MainPage : AppCompatActivity() {
                     drawerLayout.closeDrawer(GravityCompat.START)
                     true
                 }
-
                 else -> false
             }
         }
     }
 
+    // Function to switch fragments in the content layout
     private fun switchFragment(fragment: Fragment) {
         supportFragmentManager.beginTransaction()
             .replace(R.id.contentLayout, fragment)

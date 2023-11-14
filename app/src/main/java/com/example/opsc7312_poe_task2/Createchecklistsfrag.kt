@@ -25,6 +25,7 @@ import com.google.android.gms.location.LocationServices
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 
+// Fragment for creating bird checklists
 class Createchecklistsfrag : Fragment() {
     private var binding: FragmentCreatechecklistsfragBinding? = null
     private var currentLocation: Location? = null

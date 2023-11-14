@@ -1,6 +1,5 @@
 package com.example.opsc7312_poe_task2
 
-
 import android.app.AlertDialog
 import android.content.Context
 import android.os.Build
@@ -10,72 +9,23 @@ import androidx.constraintlayout.helper.widget.MotionEffect
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 
-
+// Helper class with various utilities and data structures
 class HelperClass {
 
+    // Data class representing Bird information
     data class Bird(val name: String, val dateTime: String, val location: String)
 
+    // HashMap to store Bird information mapped to user names
     public val BirdMap: HashMap<String, Bird> = HashMap()
 
-    fun addToList(usersName: String, name: String, dateTime: String, location: String){
-
+    // Function to add Bird information to the list
+    fun addToList(usersName: String, name: String, dateTime: String, location: String) {
         val bird = Bird(name, dateTime, location)
-        //BirdMap[usersName] = bird
         BirdMap.put(usersName, bird)
-
         Log.d("HelperClass", "Achievement ID: $bird")
     }
 
-    /*  fun fetchBirdData(UserID: String, holder: birdAdapter.ViewHolder, position: Int, onComplete: (List<BirdItem>) -> Unit) {
-          // Reference to the Firestore collection
-          val collectionRef = db.collection(collectionName)
-          val userID = auth.currentUser
-
-          // Query the collection based on the "birdname" field
-          collectionRef.whereEqualTo("user", UserID)
-              .get()
-              .addOnSuccessListener { querySnapshot ->
-                  val birdItemList = mutableListOf<BirdItem>()
-                  for (doc in querySnapshot) {
-                      // doc.data contains the document data
-                      val birdName = doc.getString("BirdName")
-                      val latitude = doc.getDouble("Latitude")
-                      val longitude = doc.getDouble("Longitude")
-                      val date = doc.getString("Date")
-                      mCurrentLocation = Location(latitude,longitude)
-                      addToList(userID.toString(),birdName.toString(),date.toString(),)
-                      /* if (birdName != null && latitude != null && longitude != null) {
-                           val birdItem = BirdItem(
-                              // R.drawable.bird_image, // Replace with the appropriate image resource
-
-                               //   birdName,
-                              // "", // You can add a timestamp here if needed
-                              // "Lat: $latitude, Long: $longitude"
-                           )
-                           birdItemList.add(birdItem)
-                       }*/
-                  }
-                  onComplete(birdItemList)
-              }
-              .addOnSuccessListener { querySnapshot ->
-                  for (doc in querySnapshot) {
-                      // doc.data contains the document data
-                      val data = doc.data
-                      Log.d(MotionEffect.TAG, "fetchBirdData: success ")
-                      // Handle the data as needed
-                      // For example, you can populate a list of objects with this data
-                  }
-              }
-              .addOnFailureListener { e ->
-                  // Handle the error
-                  // This will be called if there is an issue with retrieving the data
-                  Log.d(MotionEffect.TAG, "fetchBirdData: failure "+ e.message.toString())
-
-              }
-      }*/
-
-
-
+    // Data class representing Achievement information
     data class Achievement(
         val id: String,
         val name: String,
@@ -84,11 +34,13 @@ class HelperClass {
         var isUnlocked: Boolean = false
     )
 
+    // Data class representing Achievement condition
     data class Condition(
         val type: ConditionType,
         val value: Any
     )
 
+    // Enum class representing Achievement condition types
     enum class ConditionType {
         DISTANCE_TRAVELED,
         BIRDS_ADDED,
@@ -97,13 +49,16 @@ class HelperClass {
         SETTINGS_CHANGE
     }
 
+    // Data class representing Achievement progress
     private data class AchievementProgress(
         var isUnlocked: Boolean = false
         // Add other progress-related properties if needed
     )
 
+    // List to store Achievements
     val achievementList: MutableList<Achievement> = mutableListOf()
 
+    // Object to manage Achievements
     object AchievementManager {
         var fetchedAchievements: List<Achievement> = emptyList()
 
@@ -112,26 +67,21 @@ class HelperClass {
         private val unlockedAchievementsMap = mutableMapOf<String, AchievementProgress>()
 
         // Define a list of achievements
-        //the number at value is the condition that must be met
-        //for single time achievements (login, settings change) its easier to make their conditions = 1
-        //then in the check just pass it a 1
+        // (the number at value is the condition that must be met)
         var achievementList = listOf(
             Achievement("Bronze-Travel", "Junior Traveler", "Achieve 5km of travel", listOf(Condition(ConditionType.DISTANCE_TRAVELED, 5.0))),
             Achievement("Silver-Travel", "Experienced Traveler", "Achieve 10km of travel", listOf(Condition(ConditionType.DISTANCE_TRAVELED, 10.0))),
             Achievement("Gold-Travel", "Pro Traveler", "Achieve 15km of travel", listOf(Condition(ConditionType.DISTANCE_TRAVELED, 15.0))),
-
             Achievement("Bronze-Birds", "Junior Observer", "Observe 5 birds", listOf(Condition(ConditionType.BIRDS_ADDED, 5))),
             Achievement("Silver-Birds", "Experienced Observer", "Observe 10 birds", listOf(Condition(ConditionType.BIRDS_ADDED, 10))),
             Achievement("Gold-Birds", "Pro Observer", "Observe 15 birds", listOf(Condition(ConditionType.BIRDS_ADDED, 15))),
-
             Achievement("marker_placed", "Explorer", "Place your first marker on the map", listOf(Condition(ConditionType.MARKER_PLACED, 1))),
-
             Achievement("settings_changed", "Mechanic", "Change the settings to your preferences", listOf(Condition(ConditionType.SETTINGS_CHANGE, 1))),
-
-            Achievement("login_first", "Welcome Aboards", "Logged in for the first time", listOf(Condition(ConditionType.LOGGED_IN, 1))),
+            Achievement("login_first", "Welcome Aboards", "Logged in for the first time", listOf(Condition(ConditionType.LOGGED_IN, 1)))
             // Add other achievements as needed
         )
 
+        // Function to track achievements based on distance traveled
         private fun trackAchievements(achievementId: String, type: ConditionType, userValue: Double) {
             val achievement = achievementList.find { it.id == achievementId } ?: return
             val achievementProgress = unlockedAchievementsMap.getOrPut(achievementId) { AchievementProgress() }
@@ -142,6 +92,7 @@ class HelperClass {
             }
         }
 
+        // Function to track achievements based on type and user value
         private fun trackAchievements(type: ConditionType, userValue: Number) {
             achievementList.forEach { achievement ->
                 if (!achievement.isUnlocked && meetsCondition(achievement, type, userValue.toDouble())) {
@@ -150,15 +101,17 @@ class HelperClass {
             }
         }
 
+        // Function to unlock a new achievement
         private fun newUnlockAchievement(achievementId: String, achievement: Achievement) {
             achievement.isUnlocked = true
             // Logic to handle unlocking achievement
 
-            //if im understanding correcting then this should save the stuff to the firebase database
+            // If I understand correctly, this should save the data to the Firebase database
             achievementFirestore(achievementId, achievement.isUnlocked)
             println("Achievement Unlocked: $achievementId")
         }
 
+        // Function to check if a condition is met for an achievement
         private fun meetsCondition(achievement: Achievement, type: ConditionType, userValue: Double): Boolean {
             val condition = achievement.conditions.find { it.type == type } ?: return false
             return userValue >= when (condition.value) {
@@ -168,14 +121,13 @@ class HelperClass {
             }
         }
 
-
-
-
+        // Function to track distance traveled and unlock relevant achievements
         fun trackDistanceTraveled(distance: Double) {
             checkAndUnlockAchievements(ConditionType.DISTANCE_TRAVELED, distance)
             trackAchievements(ConditionType.DISTANCE_TRAVELED, distance)
         }
 
+        // Function to track birds added and unlock relevant achievements
         fun trackBirdsAdded(count: Int, context: Context) {
             checkAndUnlockAchievements(ConditionType.BIRDS_ADDED, count)
             trackAchievements(ConditionType.BIRDS_ADDED, count)
@@ -183,11 +135,13 @@ class HelperClass {
             showNotification(context, "Achievement Unlocked!", "You have tracked quite a few birds!")
         }
 
+        // Function to track placing a marker and unlock relevant achievements
         fun trackMarkerPlaced() {
             checkAndUnlockAchievements(ConditionType.MARKER_PLACED, 1)
             trackAchievements(ConditionType.MARKER_PLACED, 1)
         }
 
+        // Function to track first login and unlock relevant achievements
         fun trackLoginFirst(context: Context) {
             checkAndUnlockAchievements(ConditionType.LOGGED_IN, 1)
             trackAchievements(ConditionType.LOGGED_IN, 1)
@@ -195,6 +149,7 @@ class HelperClass {
             showNotification(context, "Achievement Unlocked!", "You have logged in for the first time!")
         }
 
+        // Function to track settings change and unlock relevant achievements
         fun trackSettingsChanged(context: Context) {
             checkAndUnlockAchievements(ConditionType.SETTINGS_CHANGE, 1)
             trackAchievements(ConditionType.SETTINGS_CHANGE, 1)
@@ -202,25 +157,22 @@ class HelperClass {
             showNotification(context, "Achievement Unlocked!", "You have changed your settings! Keep on watching those birds!")
         }
 
-
-
-        private fun achievementFirestore(id: String, status: Boolean){
+        // Function to save achievement data to Firebase Firestore
+        private fun achievementFirestore(id: String, status: Boolean) {
             val currentUser = FirebaseAuth.getInstance().currentUser
             val userId = currentUser?.uid
             Log.d("User", "user: ${currentUser}")
 
             if (userId != null) {
-
                 val db = FirebaseFirestore.getInstance()
 
-                for(achievement in HelperClass.AchievementManager.achievementList){
-
+                for (achievement in HelperClass.AchievementManager.achievementList) {
                     val achievementData = hashMapOf(
                         "id" to achievement.id,
                         "isUnlocked" to achievement.isUnlocked,
                         "user" to currentUser.uid
                     )
-                    Log.d("Achievements id:",achievement.id.toString())
+                    Log.d("Achievements id:", achievement.id.toString())
                     db.collection("Achievements")
                         .add(achievementData)
                         .addOnSuccessListener { documentReference ->
@@ -252,12 +204,11 @@ class HelperClass {
                             //alertDialog.show()
                         }
                 }
-
             }
-
         }
 
         //-------------------------------------------------------------------------------------------------old stuff
+        // Function to check and unlock achievements based on type and value
         private fun checkAndUnlockAchievements(type: ConditionType, value: Number) {
             val relevantAchievements = achievementList.filter { it.conditions.any { it.type == type } }
 
@@ -278,6 +229,7 @@ class HelperClass {
             }
         }
 
+        // Function to unlock an achievement
         private fun unlockAchievement(achievement: Achievement) {
             if (!unlockedAchievements.contains(achievement)) {
                 unlockedAchievements.add(achievement)
@@ -287,21 +239,21 @@ class HelperClass {
             }
         }
 
+        // Function to get a list of unlocked achievements
         fun getUnlockedAchievements(): List<Achievement> {
             return unlockedAchievements.toList()
         }
 
+        // Function to get a list of all achievements
         fun getAllAchievements(): List<Achievement> {
             return achievementList.toList()
         }
 
-
+        // Function to show a notification
         @RequiresApi(Build.VERSION_CODES.TIRAMISU)
         private fun showNotification(context: Context, title: String?, message: String?) {
             val notificationHelper = NotificationHelper(context)
             notificationHelper.showNotification(title, message)
         }
-
     }
-
 }
