@@ -35,6 +35,10 @@ class Birdsfrag : Fragment() {
         val options = FirestoreRecyclerOptions.Builder<BirdItem>()
             .setQuery(query, BirdItem::class.java)
             .build()
+        val fAuth = FirebaseAuth.getInstance()
+        val firestore = FirebaseFirestore.getInstance()
+        val user = fAuth.currentUser
+        val observations = firestore.collection("users").document(user!!.uid).collection("Observations")
 
         // Use FirestoreRecyclerOptions instead of FirebaseRecyclerOptions
         adapter = BirdListAdapter(options, requireContext())
