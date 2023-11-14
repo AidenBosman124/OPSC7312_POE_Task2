@@ -56,7 +56,7 @@ class HomeFragment : Fragment() {
     }
 
     private fun btnAchievementClick() {
-        startActivity(Intent(requireContext(), activityAchievements::class.java))
+        startActivity(Intent(requireContext(), AchievementsAdapter::class.java))
     }
 
     companion object {
