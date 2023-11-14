@@ -23,7 +23,7 @@ class Settingsfrag : Fragment() {
     val fAuth = FirebaseAuth.getInstance()
     val firestore = FirebaseFirestore.getInstance()
     val user = fAuth.currentUser
-    private val databaseReference = firestore.collection("users").document(user!!.uid).collection("Observations").document("data")
+    private val databaseReference = firestore.collection("users").document(user!!.uid).collection("settings").document("data")
 
 
     override fun onCreateView(
@@ -66,6 +66,6 @@ class Settingsfrag : Fragment() {
     private fun sendToFirebase(distance: Double) {
         // Save the distance to Firebase
         val distanceMap = mapOf("distance" to distance)
-        databaseReference.set(distanceMap, SetOptions.merge())
+        databaseReference.set(distanceMap)
     }
 }
