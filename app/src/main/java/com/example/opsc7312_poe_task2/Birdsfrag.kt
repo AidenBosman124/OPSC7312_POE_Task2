@@ -11,6 +11,7 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.Query
 
+
 class Birdsfrag : Fragment() {
 
     private lateinit var recyclerView: RecyclerView
@@ -26,7 +27,6 @@ class Birdsfrag : Fragment() {
 
         // Set up RecyclerView
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
-        adapter = BirdListAdapter(birdItems, requireContext())
         recyclerView.adapter = adapter
 
         // Fetch data from Firebase
