@@ -12,9 +12,6 @@ class StartPage : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_start_page)
 
-        // Initialize Firebase
-        FirebaseApp.initializeApp(this)
-
         val LogInbtn = findViewById<Button>(R.id.LogInbtn)
         val Registerbtn = findViewById<Button>(R.id.Registerbtn)
 
