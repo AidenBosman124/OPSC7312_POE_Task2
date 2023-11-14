@@ -255,7 +255,7 @@ class Createchecklistsfrag : Fragment() {
         observationData["date"] = date
         observationData["longitude"] = longitude
         observationData["latitude"] = latitude
-        observations.document("yourDocumentId").set(observationData, SetOptions.merge())
+        observations.document("data").set(observationData, SetOptions.merge())
     }
 
     private fun btnAddClick() {
