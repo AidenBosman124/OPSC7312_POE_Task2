@@ -28,11 +28,12 @@ Before using the Bird Watching App, ensure you have the following prerequisites:
 - Google Maps API key
 - Mapbox API key
 - API key for eBird
-- Android API 34 to run 
+- Android API 34 to run
+- Light Mode (The app does not run properly in dark mode)
 
 ## Installation
 
-Follow these steps to set up the Bird Watching App on your local environment:
+Follow these steps to set up the Bird Watching App in your local environment:
 
 1. Clone the repository:
 
